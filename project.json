@@ -1,0 +1,7 @@
+{
+    "id": "corto/ic",
+    "type": "package",
+    "value": {
+        "dependencies": ["corto/vm", "corto/ic/c"]
+    }
+}
