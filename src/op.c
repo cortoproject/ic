@@ -91,7 +91,7 @@ corto_string _ic_op_str(
     corto_string in)
 {
 /* $begin(corto/ic/op/str) */
-    in = strappend(in, "  %s", ic_opKindStr(this->kind));
+    in = strappend(in, "  %s", corto_strp(&this->kind, ic_opKind_o, 0);
     if (this->s1) {
         in = ic_op_derefToString(in, this->s1, this->s1Deref);
         in = ic_node_str(this->s1, in);
