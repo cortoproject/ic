@@ -8,7 +8,7 @@
 
 #include <corto/ic/ic.h>
 
-corto_int16 _ic_member_construct(
+int16_t _ic_member_construct(
     ic_member this)
 {
 /* $begin(corto/ic/member/construct) */

@@ -8,7 +8,7 @@
 
 #include <corto/ic/ic.h>
 
-corto_int16 _ic_function_construct(
+int16_t _ic_function_construct(
     ic_function this)
 {
 /* $begin(corto/ic/function/construct) */

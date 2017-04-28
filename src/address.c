@@ -8,7 +8,7 @@
 
 #include <corto/ic/ic.h>
 
-corto_int16 _ic_address_construct(
+int16_t _ic_address_construct(
     ic_address this)
 {
 /* $begin(corto/ic/address/construct) */

@@ -77,7 +77,7 @@ static corto_string ic_op_derefToString(corto_string string, ic_node s, ic_deref
 
 /* $end */
 
-corto_int16 _ic_op_construct(
+int16_t _ic_op_construct(
     ic_op this)
 {
 /* $begin(corto/ic/op/construct) */
@@ -112,7 +112,7 @@ corto_string _ic_op_str(
 /* $end */
 }
 
-corto_bool _ic_op_validate(
+bool _ic_op_validate(
     ic_op this)
 {
 /* $begin(corto/ic/op/validate) */

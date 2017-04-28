@@ -359,7 +359,7 @@ ic_vmOperand ic_getVmOperand(ic_vmProgram *program, ic_derefKind deref, corto_bo
         break;
 
         default:
-            corto_assert(0, "invalid value-kind (%s)", ic_kindStr(node->kind));
+            corto_assert(0, "invalid value-kind (%d)", node->kind);
             break;
         }
     }
@@ -1098,9 +1098,10 @@ static vm_opKind ic_getVmOpKind(ic_vmProgram *program, ic_op op, ic_node storage
     if ((result == CORTO_VM_STOP) && (op->kind != ic_stop)) {
         corto_error("%s:%d: instruction lookup failed for => %s %s %s",
             program->icProgram->filename, op->line,
-            ic_opKindStr(op->kind),
-            ic_derefKindStr(deref1),
-            ic_derefKindStr(deref2));
+            corto_strp(&op->kind, ic_opKind_o, 0),
+            corto_strp(&deref1, ic_derefKind_o, 0),
+            corto_strp(&deref2, ic_derefKind_o, 0));
+
         fprintf(stderr, "   type:      ");
         switch(typeKind) {
         case IC_VMTYPE_B: fprintf(stderr, "B"); break;
@@ -1130,13 +1131,13 @@ static vm_opKind ic_getVmOpKind(ic_vmProgram *program, ic_op op, ic_node storage
         }
         printf("\n");
         if (op->s1) {
-            corto_error("   operand 1: %s", ic_nodeStr(op->s1));
+            corto_error("   operand 1: %s", corto_strp(&op->s1, ic_node_o, 0));
         }
         if (op->s2) {
-            corto_error("   operand 2: %s", ic_nodeStr(op->s2));
+            corto_error("   operand 2: %s", corto_strp(&op->s2, ic_node_o, 0));
         }
         if (op->s3) {
-            corto_error("   operand 3: %s", ic_nodeStr(op->s3));
+            corto_error("   operand 3: %s", corto_strp(&op->s3, ic_node_o, 0));
         }
     }
 

@@ -8,7 +8,7 @@
 
 #include <corto/ic/ic.h>
 
-corto_int16 _ic_label_construct(
+int16_t _ic_label_construct(
     ic_label this)
 {
 /* $begin(corto/ic/label/construct) */

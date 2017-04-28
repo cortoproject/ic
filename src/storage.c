@@ -8,7 +8,7 @@
 
 #include <corto/ic/ic.h>
 
-corto_int16 _ic_storage_construct(
+int16_t _ic_storage_construct(
     ic_storage this)
 {
 /* $begin(corto/ic/storage/construct) */
@@ -17,7 +17,7 @@ corto_int16 _ic_storage_construct(
 /* $end */
 }
 
-corto_void _ic_storage_free(
+void _ic_storage_free(
     ic_storage this)
 {
 /* $begin(corto/ic/storage/free) */

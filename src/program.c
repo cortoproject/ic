@@ -12,7 +12,7 @@
 #include "corto/ic/assemble.h"
 /* $end */
 
-corto_void _ic_program_add(
+void _ic_program_add(
     ic_program this,
     ic_node n)
 {
@@ -33,7 +33,7 @@ corto_void _ic_program_add(
 /* $end */
 }
 
-corto_int16 _ic_program_assemble(
+int16_t _ic_program_assemble(
     ic_program this)
 {
 /* $begin(corto/ic/program/assemble) */
@@ -57,7 +57,7 @@ error:
 /* $end */
 }
 
-corto_int16 _ic_program_construct(
+int16_t _ic_program_construct(
     ic_program this)
 {
 /* $begin(corto/ic/program/construct) */
@@ -71,10 +71,10 @@ ic_variable _ic_program_declareVariable(
     ic_program this,
     corto_string name,
     corto_type type,
-    corto_bool isReference,
-    corto_bool holdsReturn,
-    corto_bool isParameter,
-    corto_bool isReturn)
+    bool isReference,
+    bool holdsReturn,
+    bool isParameter,
+    bool isReturn)
 {
 /* $begin(corto/ic/program/declareVariable) */
     ic_variable result = ic_variable(ic_scope_lookupStorage(this->scope, name, FALSE));
@@ -94,7 +94,7 @@ ic_program _ic_program_get(void)
 /* $end */
 }
 
-corto_uint32 _ic_program_getAccId(
+uint32_t _ic_program_getAccId(
     ic_program this)
 {
 /* $begin(corto/ic/program/getAccId) */
@@ -126,7 +126,7 @@ ic_element _ic_program_getElement(
 /* $end */
 }
 
-corto_uint32 _ic_program_getLabel(
+uint32_t _ic_program_getLabel(
     ic_program this)
 {
 /* $begin(corto/ic/program/getLabel) */
@@ -180,7 +180,7 @@ ic_variable _ic_program_getVariable(
 /* $end */
 }
 
-corto_void _ic_program_popAccumulator(
+void _ic_program_popAccumulator(
     ic_program this)
 {
 /* $begin(corto/ic/program/popAccumulator) */
@@ -195,7 +195,7 @@ corto_void _ic_program_popAccumulator(
 /* $end */
 }
 
-corto_void _ic_program_popScope(
+void _ic_program_popScope(
     ic_program this)
 {
 /* $begin(corto/ic/program/popScope) */
@@ -221,8 +221,8 @@ corto_void _ic_program_popScope(
 ic_accumulator _ic_program_pushAccumulator(
     ic_program this,
     corto_type type,
-    corto_bool isReference,
-    corto_bool holdsReturn)
+    bool isReference,
+    bool holdsReturn)
 {
 /* $begin(corto/ic/program/pushAccumulator) */
     corto_id name;
@@ -274,9 +274,9 @@ ic_scope _ic_program_pushScope(
 /* $end */
 }
 
-corto_int16 _ic_program_run(
+int16_t _ic_program_run(
     ic_program this,
-    corto_word result,
+    uintptr_t result,
     corto_stringSeq argv)
 {
 /* $begin(corto/ic/program/run) */

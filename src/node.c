@@ -8,7 +8,7 @@
 
 #include <corto/ic/ic.h>
 
-corto_int16 _ic_node_construct(
+int16_t _ic_node_construct(
     ic_node this)
 {
 /* $begin(corto/ic/node/construct) */

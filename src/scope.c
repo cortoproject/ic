@@ -8,7 +8,7 @@
 
 #include <corto/ic/ic.h>
 
-corto_void _ic_scope_add(
+void _ic_scope_add(
     ic_scope this,
     ic_node n)
 {
@@ -17,7 +17,7 @@ corto_void _ic_scope_add(
 /* $end */
 }
 
-corto_void _ic_scope_addStorage(
+void _ic_scope_addStorage(
     ic_scope this,
     ic_storage s)
 {
@@ -27,7 +27,7 @@ corto_void _ic_scope_addStorage(
 /* $end */
 }
 
-corto_int16 _ic_scope_construct(
+int16_t _ic_scope_construct(
     ic_scope this)
 {
 /* $begin(corto/ic/scope/construct) */
@@ -39,7 +39,7 @@ corto_int16 _ic_scope_construct(
 ic_storage _ic_scope_lookupStorage(
     ic_scope this,
     corto_string name,
-    corto_bool recursive)
+    bool recursive)
 {
 /* $begin(corto/ic/scope/lookupStorage) */
     corto_iter storageIter;

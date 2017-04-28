@@ -8,7 +8,7 @@
 
 #include <corto/ic/ic.h>
 
-corto_int16 _ic_accumulator_construct(
+int16_t _ic_accumulator_construct(
     ic_accumulator this)
 {
 /* $begin(corto/ic/accumulator/construct) */
