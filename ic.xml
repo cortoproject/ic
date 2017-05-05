@@ -81,7 +81,7 @@
 
             <class name="node">
                 <meta:scope>
-                    <member name="kind" type="ic::kind" modifiers="readonly"/>
+                    <member name="kind" type="ic/kind" modifiers="readonly"/>
                     <overridable name="str(string in)" returnType="string"/>
                     <method name="construct()" returnType="int16"/>
                 </meta:scope>
@@ -105,7 +105,7 @@
                     <member name="kind" type="storageKind" modifiers="readonly"/>
                     <member name="base" type="storage" modifiers="readonly"/>
                     <member name="used" type="uint32" modifiers="readonly"/>
-                    <member name="scope" type="ic::scope" modifiers="readonly"/>
+                    <member name="scope" type="ic/scope" modifiers="readonly"/>
                     <method name="free()"/>
                     <method name="str(string in)" returnType="string"/>
                     <method name="construct()" returnType="int16"/>
@@ -217,7 +217,7 @@
                     <member name="accumulatorSp" type="uint32" modifiers="readonly"/>
                     <member name="accumulatorStack" type="array{accumulator, 256}" modifiers="readonly"/>
                     <member name="autoAccId" type="uint32" modifiers="readonly"/>
-                    <member name="scope" type="ic::scope" modifiers="readonly"/>
+                    <member name="scope" type="ic/scope" modifiers="readonly"/>
                     <member name="errors" type="uint32" modifiers="readonly"/>
                     <member name="labelCount" type="uint32" modifiers="local|private"/>
                     <member name="vmprogram" type="word" modifiers="readonly"/>
@@ -225,19 +225,19 @@
                     <method name="add(node n)"/>
                     <method name="pushAccumulator(type type,bool isReference,bool holdsReturn)" returnType="accumulator"/>
                     <method name="popAccumulator()"/>
-                    <method name="pushScope()" returnType="ic::scope"/>
-                    <method name="pushFunction(function function)" returnType="ic::scope"/>
+                    <method name="pushScope()" returnType="ic/scope"/>
+                    <method name="pushFunction(function function)" returnType="ic/scope"/>
                     <method name="popScope()"/>
                     <method name="assemble()" returnType="int16"/>
                     <method name="run(word result,sequence{string} argv)" returnType="int16"/>
                     <method name="str()" returnType="string"/>
                     <method name="getLabel()" returnType="uint32"/>
                     <method name="getAccId()" returnType="uint32"/>
-                    <method name="getObject(object o)" returnType="ic::object"/>
-                    <method name="getVariable(string name)" returnType="ic::variable"/>
-                    <method name="declareVariable(string name,type type,bool isReference,bool holdsReturn,bool isParameter,bool isReturn)" returnType="ic::variable"/>
-                    <method name="getMember(storage base,member m)" returnType="ic::member"/>
-                    <method name="getElement(storage base,node index)" returnType="ic::element"/>
+                    <method name="getObject(object o)" returnType="ic/object"/>
+                    <method name="getVariable(string name)" returnType="ic/variable"/>
+                    <method name="declareVariable(string name,type type,bool isReference,bool holdsReturn,bool isParameter,bool isReturn)" returnType="ic/variable"/>
+                    <method name="getMember(storage base,member m)" returnType="ic/member"/>
+                    <method name="getElement(storage base,node index)" returnType="ic/element"/>
                     <function name="get()" returnType="program"/>
                 </meta:scope>
             </class>

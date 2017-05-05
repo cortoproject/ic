@@ -52,8 +52,8 @@ static ic_vmLabel *ic_vmLabelGet(ic_vmProgram *program, corto_uint32 id) {
 
     if (program->labels) {
         labelIter = corto_llIter(program->labels);
-        while(corto_iterHasNext(&labelIter)) {
-            label = corto_iterNext(&labelIter);
+        while(corto_iter_hasNext(&labelIter)) {
+            label = corto_iter_next(&labelIter);
             if (label->id == id) {
                 break;
             } else {
@@ -624,8 +624,8 @@ static void ic_vmInlineFunctionMark(ic_vmProgram *program, vm_program vmProgram,
 
     if (program->labels) {
         inlineFunctionIter = corto_llIter(program->labels);
-        while(corto_iterHasNext(&inlineFunctionIter)) {
-            inlineFunction = corto_iterNext(&inlineFunctionIter);
+        while(corto_iter_hasNext(&inlineFunctionIter)) {
+            inlineFunction = corto_iter_next(&inlineFunctionIter);
             if (inlineFunction->program == vmProgram) {
                 if (inlineFunction->function == function) {
                     break;
@@ -1098,9 +1098,9 @@ static vm_opKind ic_getVmOpKind(ic_vmProgram *program, ic_op op, ic_node storage
     if ((result == CORTO_VM_STOP) && (op->kind != ic_stop)) {
         corto_error("%s:%d: instruction lookup failed for => %s %s %s",
             program->icProgram->filename, op->line,
-            corto_strp(&op->kind, ic_opKind_o, 0),
-            corto_strp(&deref1, ic_derefKind_o, 0),
-            corto_strp(&deref2, ic_derefKind_o, 0));
+            corto_ptr_str(&op->kind, ic_opKind_o, 0),
+            corto_ptr_str(&deref1, ic_derefKind_o, 0),
+            corto_ptr_str(&deref2, ic_derefKind_o, 0));
 
         fprintf(stderr, "   type:      ");
         switch(typeKind) {
@@ -1131,13 +1131,13 @@ static vm_opKind ic_getVmOpKind(ic_vmProgram *program, ic_op op, ic_node storage
         }
         printf("\n");
         if (op->s1) {
-            corto_error("   operand 1: %s", corto_strp(&op->s1, ic_node_o, 0));
+            corto_error("   operand 1: %s", corto_ptr_str(&op->s1, ic_node_o, 0));
         }
         if (op->s2) {
-            corto_error("   operand 2: %s", corto_strp(&op->s2, ic_node_o, 0));
+            corto_error("   operand 2: %s", corto_ptr_str(&op->s2, ic_node_o, 0));
         }
         if (op->s3) {
-            corto_error("   operand 3: %s", corto_strp(&op->s3, ic_node_o, 0));
+            corto_error("   operand 3: %s", corto_ptr_str(&op->s3, ic_node_o, 0));
         }
     }
 
@@ -1706,8 +1706,8 @@ corto_int16 ic_vmProgram_scopeToVm(ic_vmProgram *program, ic_scope scope) {
     /* Add locals to program */
     localIter = corto_llIter(scope->storages);
     initStart = size;
-    while(corto_iterHasNext(&localIter)) {
-        storage = corto_iterNext(&localIter);
+    while(corto_iter_hasNext(&localIter)) {
+        storage = corto_iter_next(&localIter);
         if (storage->kind == IC_VARIABLE) {
             ic_vmStorage *vmLocal;
             corto_bool zeroLocal = TRUE;
@@ -1765,8 +1765,8 @@ corto_int16 ic_vmProgram_scopeToVm(ic_vmProgram *program, ic_scope scope) {
     ic_vmProgram_setScopeSize(program, size);
 
     programIter = corto_llIter(scope->program);
-    while(!result && corto_iterHasNext(&programIter)) {
-        ic = corto_iterNext(&programIter);
+    while(!result && corto_iter_hasNext(&programIter)) {
+        ic = corto_iter_next(&programIter);
         switch(ic->kind) {
         case IC_FUNCTION:
             ic_vmProgram_finalize(program);
@@ -1824,9 +1824,9 @@ vm_program ic_vmAssemble(ic_program program) {
          * after they were encountered */
         if (vmProgram.inlineFunctions) {
             inlineFunctionIter = corto_llIter(vmProgram.inlineFunctions);
-            while(corto_iterHasNext(&inlineFunctionIter)) {
+            while(corto_iter_hasNext(&inlineFunctionIter)) {
                 vm_program program;
-                inlineFunction = corto_iterNext(&inlineFunctionIter);
+                inlineFunction = corto_iter_next(&inlineFunctionIter);
                 program = (vm_program)inlineFunction->function->fptr;
                 if (program->storage > inlineFunction->program->stack) {
                     inlineFunction->program->stack = program->storage;

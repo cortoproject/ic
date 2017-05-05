@@ -9,8 +9,8 @@ static void ic_vmProgram_fillInLabels(ic_vmProgram *program) {
 
     if (program->labels) {
         labelIter = corto_llIter(program->labels);
-        while(corto_iterHasNext(&labelIter)) {
-            label = corto_iterNext(&labelIter);
+        while(corto_iter_hasNext(&labelIter)) {
+            label = corto_iter_next(&labelIter);
             for(referee=0; referee < label->refereeCount; referee++) {
                 *(void**)CORTO_OFFSET(label->referees[referee], program->program->program) = &program->program->program[label->pc];
             }
@@ -39,8 +39,8 @@ static void ic_vmProgram_allocateAccumulators(ic_vmProgram *program) {
 
     if (program->storages) {
         accumulatorIter = corto_llIter(program->storages);
-        while(corto_iterHasNext(&accumulatorIter)) {
-            storage = corto_iterNext(&accumulatorIter);
+        while(corto_iter_hasNext(&accumulatorIter)) {
+            storage = corto_iter_next(&accumulatorIter);
 
             if (ic_vmStorage_mustAllocate(storage)) {
 
@@ -105,8 +105,8 @@ static void ic_vmProgram_allocateAccumulators(ic_vmProgram *program) {
 
         /* Free resources */
         accumulatorIter = corto_llIter(program->storages);
-        while(corto_iterHasNext(&accumulatorIter)) {
-            storage = corto_iterNext(&accumulatorIter);
+        while(corto_iter_hasNext(&accumulatorIter)) {
+            storage = corto_iter_next(&accumulatorIter);
             corto_dealloc(storage);
         }
         corto_llFree(program->storages);
@@ -120,8 +120,8 @@ ic_vmStorage *ic_vmProgram_getStorage(ic_vmProgram *program, ic_storage icAccumu
 
     if (program->storages) {
         accumulatorIter = corto_llIter(program->storages);
-        while(corto_iterHasNext(&accumulatorIter)) {
-            accumulator = corto_iterNext(&accumulatorIter);
+        while(corto_iter_hasNext(&accumulatorIter)) {
+            accumulator = corto_iter_next(&accumulatorIter);
             if (accumulator->ic == icAccumulator) {
                 break;
             } else {

@@ -204,8 +204,8 @@ void _ic_program_popScope(
         ic_storage storage;
 
         storageIter = corto_llIter(this->scope->storages);
-        while(corto_iterHasNext(&storageIter)) {
-            storage = corto_iterNext(&storageIter);
+        while(corto_iter_hasNext(&storageIter)) {
+            storage = corto_iter_next(&storageIter);
             if ((storage->kind == IC_VARIABLE) && !((ic_variable)storage)->isReturn && !((ic_variable)storage)->isParameter) {
                 ic_storage_free(storage);
             }

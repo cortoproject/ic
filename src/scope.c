@@ -46,8 +46,8 @@ ic_storage _ic_scope_lookupStorage(
     ic_storage result = NULL;
 
     storageIter = corto_llIter(this->storages);
-    while(corto_iterHasNext(&storageIter)) {
-        result = corto_iterNext(&storageIter);
+    while(corto_iter_hasNext(&storageIter)) {
+        result = corto_iter_next(&storageIter);
         if (!strcmp(result->name, name)) {
             break;
         } else {
@@ -75,8 +75,8 @@ corto_string _ic_scope_str(
     corto_string result = in;
 
     storageIter = corto_llIter(this->storages);
-    while(corto_iterHasNext(&storageIter)) {
-        storage = corto_iterNext(&storageIter);
+    while(corto_iter_hasNext(&storageIter)) {
+        storage = corto_iter_next(&storageIter);
         if (storage->kind == IC_VARIABLE) {
             storages ++;
         }
@@ -87,8 +87,8 @@ corto_string _ic_scope_str(
     }
 
     storageIter = corto_llIter(this->storages);
-    while(corto_iterHasNext(&storageIter)) {
-        storage = corto_iterNext(&storageIter);
+    while(corto_iter_hasNext(&storageIter)) {
+        storage = corto_iter_next(&storageIter);
         if (storage->kind == IC_VARIABLE) {
             result = strappend(
               result,
@@ -100,8 +100,8 @@ corto_string _ic_scope_str(
     }
 
     programIter = corto_llIter(this->program);
-    while(corto_iterHasNext(&programIter)) {
-        ic = corto_iterNext(&programIter);
+    while(corto_iter_hasNext(&programIter)) {
+        ic = corto_iter_next(&programIter);
         result = ic_node_str(ic, result);
         result = strappend(result, "\n");
     }
