@@ -8,7 +8,7 @@ static void ic_vmProgram_fillInLabels(ic_vmProgram *program) {
     corto_uint32 referee;
 
     if (program->labels) {
-        labelIter = corto_llIter(program->labels);
+        labelIter = corto_ll_iter(program->labels);
         while(corto_iter_hasNext(&labelIter)) {
             label = corto_iter_next(&labelIter);
             for(referee=0; referee < label->refereeCount; referee++) {
@@ -20,7 +20,7 @@ static void ic_vmProgram_fillInLabels(ic_vmProgram *program) {
         }
 
         /* Free label list */
-        corto_llFree(program->labels);
+        corto_ll_free(program->labels);
         program->labels = NULL;
     }
 }
@@ -38,7 +38,7 @@ static void ic_vmProgram_allocateAccumulators(ic_vmProgram *program) {
     offset = program->maxScopeSize;
 
     if (program->storages) {
-        accumulatorIter = corto_llIter(program->storages);
+        accumulatorIter = corto_ll_iter(program->storages);
         while(corto_iter_hasNext(&accumulatorIter)) {
             storage = corto_iter_next(&accumulatorIter);
 
@@ -104,12 +104,12 @@ static void ic_vmProgram_allocateAccumulators(ic_vmProgram *program) {
         }
 
         /* Free resources */
-        accumulatorIter = corto_llIter(program->storages);
+        accumulatorIter = corto_ll_iter(program->storages);
         while(corto_iter_hasNext(&accumulatorIter)) {
             storage = corto_iter_next(&accumulatorIter);
             corto_dealloc(storage);
         }
-        corto_llFree(program->storages);
+        corto_ll_free(program->storages);
         program->storages = NULL;
     }
 }
@@ -119,7 +119,7 @@ ic_vmStorage *ic_vmProgram_getStorage(ic_vmProgram *program, ic_storage icAccumu
     ic_vmStorage *accumulator = NULL;
 
     if (program->storages) {
-        accumulatorIter = corto_llIter(program->storages);
+        accumulatorIter = corto_ll_iter(program->storages);
         while(corto_iter_hasNext(&accumulatorIter)) {
             accumulator = corto_iter_next(&accumulatorIter);
             if (accumulator->ic == icAccumulator) {
@@ -136,9 +136,9 @@ ic_vmStorage *ic_vmProgram_getStorage(ic_vmProgram *program, ic_storage icAccumu
         }
         accumulator = ic_vmStorageCreate(program, icAccumulator, program->program->size);
         if (!program->storages) {
-            program->storages = corto_llNew();
+            program->storages = corto_ll_new();
         }
-        corto_llAppend(program->storages, accumulator);
+        corto_ll_append(program->storages, accumulator);
     }
 
     /* Keep track of where an accumulator is last used */

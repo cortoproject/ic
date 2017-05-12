@@ -1,9 +1,9 @@
 <meta xmlns:meta="http://corto.io/meta">
-    <meta:package name="corto" url="http://corto.io/doc/corto">
-        <meta:package name="ic" url="http://corto.io/doc/corto/ic">
+    <corto:package name="corto" url="http://corto.io/doc/corto">
+        <corto:package name="ic" url="http://corto.io/doc/corto/ic">
 
             <enum name="kind">
-                <meta:scope>
+                <corto:scope>
                     <constant name="STORAGE"/>
                     <constant name="LITERAL"/>
                     <constant name="LABEL"/>
@@ -15,7 +15,7 @@
             </enum>
 
             <enum name="opKind">
-                <meta:scope>
+                <corto:scope>
                     <constant name="set"/>
                     <constant name="cast"/>
                     <constant name="strcat"/>
@@ -63,7 +63,7 @@
             </enum>
 
             <enum name="storageKind">
-                <meta:scope>
+                <corto:scope>
                     <constant name="OBJECT"/>
                     <constant name="VARIABLE"/>
                     <constant name="ACCUMULATOR"/>
@@ -73,14 +73,14 @@
             </enum>
 
             <enum name="derefKind">
-                <meta:scope>
+                <corto:scope>
                     <constant name="DEREF_VALUE"/>
                     <constant name="DEREF_ADDRESS"/>
                 </meta:scope>
             </enum>
 
             <class name="node">
-                <meta:scope>
+                <corto:scope>
                     <member name="kind" type="ic/kind" modifiers="readonly"/>
                     <overridable name="str(string in)" returnType="string"/>
                     <method name="construct()" returnType="int16"/>
@@ -88,16 +88,16 @@
             </class>
 
             <class name="address" base="node">
-                <meta:scope>
+                <corto:scope>
                     <member name="value" type="word"/>
                     <method name="construct()" returnType="int16"/>
                 </meta:scope>
             </class>
 
-            <meta:object name="scope" type="class"/>
+            <corto:object name="scope" type="class"/>
 
             <class name="storage" base="node">
-                <meta:scope>
+                <corto:scope>
                     <member name="name" type="string"/>
                     <member name="type" type="type"/>
                     <member name="isReference" type="bool"/>
@@ -113,14 +113,14 @@
             </class>
 
             <class name="object" base="storage" baseAccess="readonly">
-                <meta:scope>
+                <corto:scope>
                     <member name="ptr" type="object"/>
                     <method name="construct()" returnType="int16"/>
                 </meta:scope>
             </class>
 
             <class name="variable" base="storage">
-                <meta:scope>
+                <corto:scope>
                     <member name="isParameter" type="bool"/>
                     <member name="isReturn" type="bool"/>
                     <method name="construct()" returnType="int16"/>
@@ -128,7 +128,7 @@
             </class>
 
             <class name="member" base="storage" baseAccess="readonly">
-                <meta:scope>
+                <corto:scope>
                     <member name="base" type="storage"/>
                     <member name="member" type="member"/>
                     <method name="construct()" returnType="int16"/>
@@ -136,7 +136,7 @@
             </class>
 
             <class name="element" base="storage" baseAccess="readonly">
-                <meta:scope>
+                <corto:scope>
                     <member name="base" type="storage"/>
                     <member name="index" type="node"/>
                     <member name="variableIndex" type="bool" modifiers="readonly"/>
@@ -145,13 +145,13 @@
             </class>
 
             <class name="accumulator" base="storage">
-                <meta:scope>
+                <corto:scope>
                     <method name="construct()" returnType="int16"/>
                 </meta:scope>
             </class>
 
             <class name="literal" base="node" baseAccess="readonly">
-                <meta:scope>
+                <corto:scope>
                     <member name="value" type="any"/>
                     <method name="str(string in)" returnType="string"/>
                     <method name="construct()" returnType="int16"/>
@@ -159,7 +159,7 @@
             </class>
 
             <class name="label" base="node" baseAccess="readonly">
-                <meta:scope>
+                <corto:scope>
                     <member name="id" type="uint32" modifiers="readonly"/>
                     <method name="str(string in)" returnType="string"/>
                     <method name="construct()" returnType="int16"/>
@@ -167,7 +167,7 @@
             </class>
 
             <class name="function" base="node" baseAccess="readonly">
-                <meta:scope>
+                <corto:scope>
                     <member name="function" type="function"/>
                     <method name="str(string in)" returnType="string"/>
                     <method name="construct()" returnType="int16"/>
@@ -175,7 +175,7 @@
             </class>
 
             <class name="op" base="node">
-                <meta:scope>
+                <corto:scope>
                     <member name="line" type="uint32"/>
                     <member name="kind" type="opKind"/>
                     <member name="s1" type="node"/>
@@ -192,7 +192,7 @@
             </class>
 
             <class name="scope" base="node">
-                <meta:scope>
+                <corto:scope>
                     <member name="parent" type="scope"/>
                     <member name="isFunction" type="bool"/>
                     <member name="storages" type="list{storage}" modifiers="readonly"/>
@@ -206,7 +206,7 @@
             </class>
 
             <class name="program">
-                <meta:scope>
+                <corto:scope>
                     <member name="filename" type="string"/>
                     <member name="storages" type="list{storage}" modifiers="readonly"/>
                     <member name="scopes" type="list{scope}" modifiers="readonly"/>

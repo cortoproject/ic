@@ -13,7 +13,7 @@ void _ic_scope_add(
     ic_node n)
 {
 /* $begin(corto/ic/scope/add) */
-    corto_llAppend(this->program, n);
+    corto_ll_append(this->program, n);
 /* $end */
 }
 
@@ -22,8 +22,8 @@ void _ic_scope_addStorage(
     ic_storage s)
 {
 /* $begin(corto/ic/scope/addStorage) */
-    corto_llAppend(this->storages, s);
-    corto_setref(&s->scope, this);
+    corto_ll_append(this->storages, s);
+    corto_ptr_setref(&s->scope, this);
 /* $end */
 }
 
@@ -45,7 +45,7 @@ ic_storage _ic_scope_lookupStorage(
     corto_iter storageIter;
     ic_storage result = NULL;
 
-    storageIter = corto_llIter(this->storages);
+    storageIter = corto_ll_iter(this->storages);
     while(corto_iter_hasNext(&storageIter)) {
         result = corto_iter_next(&storageIter);
         if (!strcmp(result->name, name)) {
@@ -74,7 +74,7 @@ corto_string _ic_scope_str(
     ic_node ic;
     corto_string result = in;
 
-    storageIter = corto_llIter(this->storages);
+    storageIter = corto_ll_iter(this->storages);
     while(corto_iter_hasNext(&storageIter)) {
         storage = corto_iter_next(&storageIter);
         if (storage->kind == IC_VARIABLE) {
@@ -86,7 +86,7 @@ corto_string _ic_scope_str(
         result = strappend(result, "%%scopepush\n");
     }
 
-    storageIter = corto_llIter(this->storages);
+    storageIter = corto_ll_iter(this->storages);
     while(corto_iter_hasNext(&storageIter)) {
         storage = corto_iter_next(&storageIter);
         if (storage->kind == IC_VARIABLE) {
@@ -99,7 +99,7 @@ corto_string _ic_scope_str(
         }
     }
 
-    programIter = corto_llIter(this->program);
+    programIter = corto_ll_iter(this->program);
     while(corto_iter_hasNext(&programIter)) {
         ic = corto_iter_next(&programIter);
         result = ic_node_str(ic, result);

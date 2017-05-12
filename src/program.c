@@ -203,7 +203,7 @@ void _ic_program_popScope(
         corto_iter storageIter;
         ic_storage storage;
 
-        storageIter = corto_llIter(this->scope->storages);
+        storageIter = corto_ll_iter(this->scope->storages);
         while(corto_iter_hasNext(&storageIter)) {
             storage = corto_iter_next(&storageIter);
             if ((storage->kind == IC_VARIABLE) && !((ic_variable)storage)->isReturn && !((ic_variable)storage)->isParameter) {
@@ -267,7 +267,7 @@ ic_scope _ic_program_pushScope(
     this->scope = ic_scopeCreate(this->scope, FALSE);
 
     if (this->scope->parent) {
-        corto_llAppend(this->scope->parent->program, this->scope);
+        corto_ll_append(this->scope->parent->program, this->scope);
     }
 
     return this->scope;

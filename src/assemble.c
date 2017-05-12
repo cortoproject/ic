@@ -51,7 +51,7 @@ static ic_vmLabel *ic_vmLabelGet(ic_vmProgram *program, corto_uint32 id) {
     ic_vmLabel *label = NULL;
 
     if (program->labels) {
-        labelIter = corto_llIter(program->labels);
+        labelIter = corto_ll_iter(program->labels);
         while(corto_iter_hasNext(&labelIter)) {
             label = corto_iter_next(&labelIter);
             if (label->id == id) {
@@ -65,9 +65,9 @@ static ic_vmLabel *ic_vmLabelGet(ic_vmProgram *program, corto_uint32 id) {
     if (!label) {
         label = ic_vmLabelNew(id);
         if (!program->labels) {
-            program->labels = corto_llNew();
+            program->labels = corto_ll_new();
         }
-        corto_llAppend(program->labels, label);
+        corto_ll_append(program->labels, label);
     }
 
     return label;
@@ -623,7 +623,7 @@ static void ic_vmInlineFunctionMark(ic_vmProgram *program, vm_program vmProgram,
     ic_vmInlineFunction *inlineFunction = NULL;
 
     if (program->labels) {
-        inlineFunctionIter = corto_llIter(program->labels);
+        inlineFunctionIter = corto_ll_iter(program->labels);
         while(corto_iter_hasNext(&inlineFunctionIter)) {
             inlineFunction = corto_iter_next(&inlineFunctionIter);
             if (inlineFunction->program == vmProgram) {
@@ -639,9 +639,9 @@ static void ic_vmInlineFunctionMark(ic_vmProgram *program, vm_program vmProgram,
     if (!inlineFunction) {
         inlineFunction = ic_vmInlineFunctionNew(vmProgram, function);
         if (!program->inlineFunctions) {
-            program->inlineFunctions = corto_llNew();
+            program->inlineFunctions = corto_ll_new();
         }
-        corto_llAppend(program->inlineFunctions, inlineFunction);
+        corto_ll_append(program->inlineFunctions, inlineFunction);
     }
 }
 
@@ -1704,7 +1704,7 @@ corto_int16 ic_vmProgram_scopeToVm(ic_vmProgram *program, ic_scope scope) {
     size = ic_vmProgram_push(program);
 
     /* Add locals to program */
-    localIter = corto_llIter(scope->storages);
+    localIter = corto_ll_iter(scope->storages);
     initStart = size;
     while(corto_iter_hasNext(&localIter)) {
         storage = corto_iter_next(&localIter);
@@ -1764,7 +1764,7 @@ corto_int16 ic_vmProgram_scopeToVm(ic_vmProgram *program, ic_scope scope) {
     /* Set size of scope so that child-scopes know where there locals starts. */
     ic_vmProgram_setScopeSize(program, size);
 
-    programIter = corto_llIter(scope->program);
+    programIter = corto_ll_iter(scope->program);
     while(!result && corto_iter_hasNext(&programIter)) {
         ic = corto_iter_next(&programIter);
         switch(ic->kind) {
@@ -1823,7 +1823,7 @@ vm_program ic_vmAssemble(ic_program program) {
         /* Correct stack-sizes for inline functions that have been finalized
          * after they were encountered */
         if (vmProgram.inlineFunctions) {
-            inlineFunctionIter = corto_llIter(vmProgram.inlineFunctions);
+            inlineFunctionIter = corto_ll_iter(vmProgram.inlineFunctions);
             while(corto_iter_hasNext(&inlineFunctionIter)) {
                 vm_program program;
                 inlineFunction = corto_iter_next(&inlineFunctionIter);
@@ -1833,7 +1833,7 @@ vm_program ic_vmAssemble(ic_program program) {
                 }
                 corto_dealloc(inlineFunction);
             }
-            corto_llFree(vmProgram.inlineFunctions);
+            corto_ll_free(vmProgram.inlineFunctions);
         }
     } else {
         printf("%s: program contains errors, cannot compile.\n", program->filename);
