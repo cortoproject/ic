@@ -1,4 +1,4 @@
-<meta xmlns:meta="http://corto.io/meta">
+<corto xmlns:corto="http://corto.io/packages/corto/fmt/xml">
     <corto:package name="corto" url="http://corto.io/doc/corto">
         <corto:package name="ic" url="http://corto.io/doc/corto/ic">
 
@@ -11,7 +11,7 @@
                     <constant name="FUNCTION"/>
                     <constant name="OP"/>
                     <constant name="SCOPE"/>
-                </meta:scope>
+                </corto:scope>
             </enum>
 
             <enum name="opKind">
@@ -59,7 +59,7 @@
                     <constant name="push"/>
                     <constant name="call"/>
                     <constant name="ret"/>
-                </meta:scope>
+                </corto:scope>
             </enum>
 
             <enum name="storageKind">
@@ -69,14 +69,14 @@
                     <constant name="ACCUMULATOR"/>
                     <constant name="MEMBER"/>
                     <constant name="ELEMENT"/>
-                </meta:scope>
+                </corto:scope>
             </enum>
 
             <enum name="derefKind">
                 <corto:scope>
                     <constant name="DEREF_VALUE"/>
                     <constant name="DEREF_ADDRESS"/>
-                </meta:scope>
+                </corto:scope>
             </enum>
 
             <class name="node">
@@ -84,14 +84,14 @@
                     <member name="kind" type="ic/kind" modifiers="readonly"/>
                     <overridable name="str(string in)" returnType="string"/>
                     <method name="construct()" returnType="int16"/>
-                </meta:scope>
+                </corto:scope>
             </class>
 
             <class name="address" base="node">
                 <corto:scope>
                     <member name="value" type="word"/>
                     <method name="construct()" returnType="int16"/>
-                </meta:scope>
+                </corto:scope>
             </class>
 
             <corto:object name="scope" type="class"/>
@@ -109,14 +109,14 @@
                     <method name="free()"/>
                     <method name="str(string in)" returnType="string"/>
                     <method name="construct()" returnType="int16"/>
-                </meta:scope>
+                </corto:scope>
             </class>
 
             <class name="object" base="storage" baseAccess="readonly">
                 <corto:scope>
                     <member name="ptr" type="object"/>
                     <method name="construct()" returnType="int16"/>
-                </meta:scope>
+                </corto:scope>
             </class>
 
             <class name="variable" base="storage">
@@ -124,7 +124,7 @@
                     <member name="isParameter" type="bool"/>
                     <member name="isReturn" type="bool"/>
                     <method name="construct()" returnType="int16"/>
-                </meta:scope>
+                </corto:scope>
             </class>
 
             <class name="member" base="storage" baseAccess="readonly">
@@ -132,7 +132,7 @@
                     <member name="base" type="storage"/>
                     <member name="member" type="member"/>
                     <method name="construct()" returnType="int16"/>
-                </meta:scope>
+                </corto:scope>
             </class>
 
             <class name="element" base="storage" baseAccess="readonly">
@@ -141,13 +141,13 @@
                     <member name="index" type="node"/>
                     <member name="variableIndex" type="bool" modifiers="readonly"/>
                     <method name="construct()" returnType="int16"/>
-                </meta:scope>
+                </corto:scope>
             </class>
 
             <class name="accumulator" base="storage">
                 <corto:scope>
                     <method name="construct()" returnType="int16"/>
-                </meta:scope>
+                </corto:scope>
             </class>
 
             <class name="literal" base="node" baseAccess="readonly">
@@ -155,7 +155,7 @@
                     <member name="value" type="any"/>
                     <method name="str(string in)" returnType="string"/>
                     <method name="construct()" returnType="int16"/>
-                </meta:scope>
+                </corto:scope>
             </class>
 
             <class name="label" base="node" baseAccess="readonly">
@@ -163,7 +163,7 @@
                     <member name="id" type="uint32" modifiers="readonly"/>
                     <method name="str(string in)" returnType="string"/>
                     <method name="construct()" returnType="int16"/>
-                </meta:scope>
+                </corto:scope>
             </class>
 
             <class name="function" base="node" baseAccess="readonly">
@@ -171,7 +171,7 @@
                     <member name="function" type="function"/>
                     <method name="str(string in)" returnType="string"/>
                     <method name="construct()" returnType="int16"/>
-                </meta:scope>
+                </corto:scope>
             </class>
 
             <class name="op" base="node">
@@ -188,7 +188,7 @@
                     <method name="validate()" returnType="bool"/>
                     <method name="str(string in)" returnType="string"/>
                     <method name="construct()" returnType="int16"/>
-                </meta:scope>
+                </corto:scope>
             </class>
 
             <class name="scope" base="node">
@@ -202,7 +202,7 @@
                     <method name="addStorage(storage s)"/>
                     <method name="str(string in)" returnType="string"/>
                     <method name="construct()" returnType="int16"/>
-                </meta:scope>
+                </corto:scope>
             </class>
 
             <class name="program">
@@ -239,11 +239,11 @@
                     <method name="getMember(storage base,member m)" returnType="ic/member"/>
                     <method name="getElement(storage base,node index)" returnType="ic/element"/>
                     <function name="get()" returnType="program"/>
-                </meta:scope>
+                </corto:scope>
             </class>
 
             <function name="opKindFromOperator(operatorKind operator)" returnType="opKind"/>
 
-        </meta:package>
-    </meta:package>
-</meta>
+        </corto:package>
+    </corto:package>
+</corto>
