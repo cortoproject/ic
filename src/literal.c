@@ -1,27 +1,17 @@
-/* $CORTO_GENERATED
- *
- * literal.c
- *
- * Only code written between the begin and end tags will be preserved
- * when the file is regenerated.
- */
+/* This is a managed file. Do not delete this comment. */
 
 #include <corto/ic/ic.h>
-
-int16_t _ic_literal_construct(
+int16_t ic_literal_construct(
     ic_literal this)
 {
-/* $begin(corto/ic/literal/construct) */
     ic_node(this)->kind = IC_LITERAL;
     return ic_node_construct(ic_node(this));
-/* $end */
 }
 
-corto_string _ic_literal_str(
+corto_string ic_literal_str(
     ic_literal this,
     corto_string in)
 {
-/* $begin(corto/ic/literal/str) */
     corto_string result = NULL;
 
     if (this->value.value) {
@@ -39,5 +29,5 @@ corto_string _ic_literal_str(
     }
 
     return in;
-/* $end */
 }
+

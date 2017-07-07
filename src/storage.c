@@ -1,26 +1,16 @@
-/* $CORTO_GENERATED
- *
- * storage.c
- *
- * Only code written between the begin and end tags will be preserved
- * when the file is regenerated.
- */
+/* This is a managed file. Do not delete this comment. */
 
 #include <corto/ic/ic.h>
-
-int16_t _ic_storage_construct(
+int16_t ic_storage_construct(
     ic_storage this)
 {
-/* $begin(corto/ic/storage/construct) */
     ic_node(this)->kind = IC_STORAGE;
     return ic_node_construct(ic_node(this));
-/* $end */
 }
 
-void _ic_storage_free(
+void ic_storage_free(
     ic_storage this)
 {
-/* $begin(corto/ic/storage/free) */
     corto_type type = this->type;
     if (this->isReference || ((type->kind == CORTO_PRIMITIVE) && (corto_primitive(type)->kind == CORTO_TEXT))) {
         ic_op freeIc;
@@ -32,14 +22,12 @@ void _ic_storage_free(
         }
         ic_program_add(ic_program_get(), ic_node(freeIc));
     }
-/* $end */
 }
 
-corto_string _ic_storage_str(
+corto_string ic_storage_str(
     ic_storage this,
     corto_string in)
 {
-/* $begin(corto/ic/storage/str) */
     return strappend(in, this->name);
-/* $end */
 }
+

@@ -1,17 +1,9 @@
-/* $CORTO_GENERATED
- *
- * member.c
- *
- * Only code written between the begin and end tags will be preserved
- * when the file is regenerated.
- */
+/* This is a managed file. Do not delete this comment. */
 
 #include <corto/ic/ic.h>
-
-int16_t _ic_member_construct(
+int16_t ic_member_construct(
     ic_member this)
 {
-/* $begin(corto/ic/member/construct) */
     corto_id name;
 
     ic_storage(this)->kind = IC_MEMBER;
@@ -22,5 +14,5 @@ int16_t _ic_member_construct(
     ic_storage(this)->name = corto_strdup(name);
 
     return ic_storage_construct(ic_storage(this));
-/* $end */
 }
+

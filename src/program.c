@@ -1,22 +1,13 @@
-/* $CORTO_GENERATED
- *
- * program.c
- *
- * Only code written between the begin and end tags will be preserved
- * when the file is regenerated.
- */
+/* This is a managed file. Do not delete this comment. */
 
 #include <corto/ic/ic.h>
 
-/* $header() */
 #include "corto/ic/assemble.h"
-/* $end */
 
-void _ic_program_add(
+void ic_program_add(
     ic_program this,
     ic_node n)
 {
-/* $begin(corto/ic/program/add) */
 
     if (n->kind == IC_OP) {
         if (!ic_op_validate(ic_op(n))) {
@@ -30,13 +21,11 @@ void _ic_program_add(
         ic_nodeListAppend(this->scope->program, n);
     }
 
-/* $end */
 }
 
-int16_t _ic_program_assemble(
+int16_t ic_program_assemble(
     ic_program this)
 {
-/* $begin(corto/ic/program/assemble) */
 
     if (CORTO_DEBUG_ENABLED) {
         corto_string str = ic_program_str(this);
@@ -54,20 +43,17 @@ int16_t _ic_program_assemble(
     return 0;
 error:
     return -1;
-/* $end */
 }
 
-int16_t _ic_program_construct(
+int16_t ic_program_construct(
     ic_program this)
 {
-/* $begin(corto/ic/program/construct) */
     extern corto_threadKey IC_PROGRAM_KEY;
     corto_threadTlsSet(IC_PROGRAM_KEY, this);
     return 0;
-/* $end */
 }
 
-ic_variable _ic_program_declareVariable(
+ic_variable ic_program_declareVariable(
     ic_program this,
     corto_string name,
     corto_type type,
@@ -76,38 +62,31 @@ ic_variable _ic_program_declareVariable(
     bool isParameter,
     bool isReturn)
 {
-/* $begin(corto/ic/program/declareVariable) */
     ic_variable result = ic_variable(ic_scope_lookupStorage(this->scope, name, FALSE));
     if (!result) {
         result = ic_variableCreate(name, type, isReference, holdsReturn, isParameter, isReturn);
         ic_scope_addStorage(this->scope, ic_storage(result));
     }
     return result;
-/* $end */
 }
 
-ic_program _ic_program_get(void)
+ic_program ic_program_get(void)
 {
-/* $begin(corto/ic/program/get) */
     extern corto_threadKey IC_PROGRAM_KEY;
     return (ic_program)corto_threadTlsGet(IC_PROGRAM_KEY);
-/* $end */
 }
 
-uint32_t _ic_program_getAccId(
+uint32_t ic_program_getAccId(
     ic_program this)
 {
-/* $begin(corto/ic/program/getAccId) */
     return ++this->autoAccId;
-/* $end */
 }
 
-ic_element _ic_program_getElement(
+ic_element ic_program_getElement(
     ic_program this,
     ic_storage base,
     ic_node index)
 {
-/* $begin(corto/ic/program/getElement) */
     corto_id name;
     ic_element result;
     if (index) {
@@ -123,23 +102,19 @@ ic_element _ic_program_getElement(
         ic_scope_addStorage(this->scope, ic_storage(result));
     }
     return result;
-/* $end */
 }
 
-uint32_t _ic_program_getLabel(
+uint32_t ic_program_getLabel(
     ic_program this)
 {
-/* $begin(corto/ic/program/getLabel) */
     return ++this->labelCount;
-/* $end */
 }
 
-ic_member _ic_program_getMember(
+ic_member ic_program_getMember(
     ic_program this,
     ic_storage base,
     corto_member m)
 {
-/* $begin(corto/ic/program/getMember) */
     corto_id name;
     ic_member result;
     sprintf(name, "%s.%s", base->name, corto_idof(m));
@@ -149,14 +124,12 @@ ic_member _ic_program_getMember(
         ic_scope_addStorage(this->scope, ic_storage(result));
     }
     return result;
-/* $end */
 }
 
-ic_object _ic_program_getObject(
+ic_object ic_program_getObject(
     ic_program this,
     corto_object o)
 {
-/* $begin(corto/ic/program/getObject) */
     ic_scope root = this->scope;
     ic_object result = NULL;
     while(root->parent) {
@@ -168,22 +141,18 @@ ic_object _ic_program_getObject(
         ic_scope_addStorage(root, ic_storage(result));
     }
     return result;
-/* $end */
 }
 
-ic_variable _ic_program_getVariable(
+ic_variable ic_program_getVariable(
     ic_program this,
     corto_string name)
 {
-/* $begin(corto/ic/program/getVariable) */
     return ic_variable(ic_scope_lookupStorage(this->scope, name, TRUE));
-/* $end */
 }
 
-void _ic_program_popAccumulator(
+void ic_program_popAccumulator(
     ic_program this)
 {
-/* $begin(corto/ic/program/popAccumulator) */
     ic_storage acc;
 
     this->accumulatorSp--;
@@ -192,13 +161,11 @@ void _ic_program_popAccumulator(
     if (acc->holdsReturn) {
         ic_storage_free(acc);
     }
-/* $end */
 }
 
-void _ic_program_popScope(
+void ic_program_popScope(
     ic_program this)
 {
-/* $begin(corto/ic/program/popScope) */
     if (this->scope->storages) {
         corto_iter storageIter;
         ic_storage storage;
@@ -215,16 +182,14 @@ void _ic_program_popScope(
     if (this->scope->parent) {
         this->scope = this->scope->parent;
     }
-/* $end */
 }
 
-ic_accumulator _ic_program_pushAccumulator(
+ic_accumulator ic_program_pushAccumulator(
     ic_program this,
     corto_type type,
     bool isReference,
     bool holdsReturn)
 {
-/* $begin(corto/ic/program/pushAccumulator) */
     corto_id name;
 
     sprintf(name, "#%d", this->autoAccId);
@@ -235,14 +200,12 @@ ic_accumulator _ic_program_pushAccumulator(
 
     this->accumulatorSp++;
     return this->accumulatorStack[this->accumulatorSp-1];
-/* $end */
 }
 
-ic_scope _ic_program_pushFunction(
+ic_scope ic_program_pushFunction(
     ic_program this,
     corto_function function)
 {
-/* $begin(corto/ic/program/pushFunction) */
     ic_function label;
     ic_scope scope;
 
@@ -257,13 +220,11 @@ ic_scope _ic_program_pushFunction(
     function->kind = CORTO_PROCEDURE_VM;
 
     return scope;
-/* $end */
 }
 
-ic_scope _ic_program_pushScope(
+ic_scope ic_program_pushScope(
     ic_program this)
 {
-/* $begin(corto/ic/program/pushScope) */
     this->scope = ic_scopeCreate(this->scope, FALSE);
 
     if (this->scope->parent) {
@@ -271,24 +232,20 @@ ic_scope _ic_program_pushScope(
     }
 
     return this->scope;
-/* $end */
 }
 
-int16_t _ic_program_run(
+int16_t ic_program_run(
     ic_program this,
     uintptr_t result,
     corto_stringSeq argv)
 {
-/* $begin(corto/ic/program/run) */
     vm_program program = (vm_program)this->vmprogram;
     return vm_run(program, argv, (void*)result);
-/* $end */
 }
 
-corto_string _ic_program_str(
+corto_string ic_program_str(
     ic_program this)
 {
-/* $begin(corto/ic/program/str) */
     corto_string result = NULL;
 
 #ifdef CORTO_IC_TRACING
@@ -296,5 +253,5 @@ corto_string _ic_program_str(
     result = ic_scope_str(this->scope, result);
 #endif
     return result;
-/* $end */
 }
+

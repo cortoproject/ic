@@ -1,21 +1,12 @@
-/* $CORTO_GENERATED
- *
- * ic.c
- *
- * Only code written between the begin and end tags will be preserved
- * when the file is regenerated.
- */
+/* This is a managed file. Do not delete this comment. */
 
 #include <corto/ic/ic.h>
 
-/* $header() */
 corto_threadKey IC_PROGRAM_KEY;
-/* $end */
 
-ic_opKind _ic_opKindFromOperator(
+ic_opKind ic_opKindFromOperator(
     corto_operatorKind _operator)
 {
-/* $begin(corto/ic/opKindFromOperator) */
 
     switch(_operator) {
     case CORTO_ASSIGN: return ic_set;
@@ -47,16 +38,14 @@ ic_opKind _ic_opKindFromOperator(
     }
 
     return ic_set;
-/* $end */
 }
 
 int icMain(int argc, char *argv[]) {
-/* $begin(main) */
     CORTO_UNUSED(argc);
     CORTO_UNUSED(argv);
     if (corto_threadTlsKey(&IC_PROGRAM_KEY, NULL)) {
         return -1;
     }
     return 0;
-/* $end */
 }
+

@@ -1,14 +1,7 @@
-/* $CORTO_GENERATED
- *
- * op.c
- *
- * Only code written between the begin and end tags will be preserved
- * when the file is regenerated.
- */
+/* This is a managed file. Do not delete this comment. */
 
 #include <corto/ic/ic.h>
 
-/* $header() */
 static corto_bool ic_validateSet(ic_op op) {
     corto_bool result = TRUE;
     op->s1 && (ic_node(op->s1)->kind != IC_STORAGE) ? result = FALSE: 0;
@@ -75,22 +68,18 @@ static corto_string ic_op_derefToString(corto_string string, ic_node s, ic_deref
     return string;
 }
 
-/* $end */
 
-int16_t _ic_op_construct(
+int16_t ic_op_construct(
     ic_op this)
 {
-/* $begin(corto/ic/op/construct) */
     ic_node(this)->kind = IC_OP;
     return ic_node_construct(ic_node(this));
-/* $end */
 }
 
-corto_string _ic_op_str(
+corto_string ic_op_str(
     ic_op this,
     corto_string in)
 {
-/* $begin(corto/ic/op/str) */
     in = strappend(in, "  %s", corto_ptr_str(&this->kind, ic_opKind_o, 0));
     if (this->s1) {
         in = ic_op_derefToString(in, this->s1, this->s1Deref);
@@ -109,13 +98,11 @@ corto_string _ic_op_str(
         in = ic_node_str(this->s3, in);
     }
     return in;
-/* $end */
 }
 
-bool _ic_op_validate(
+bool ic_op_validate(
     ic_op this)
 {
-/* $begin(corto/ic/op/validate) */
     corto_bool result = TRUE;
 
     switch(this->kind) {
@@ -182,5 +169,5 @@ bool _ic_op_validate(
     }
 #endif
     return result;
-/* $end */
 }
+

@@ -1,47 +1,33 @@
-/* $CORTO_GENERATED
- *
- * scope.c
- *
- * Only code written between the begin and end tags will be preserved
- * when the file is regenerated.
- */
+/* This is a managed file. Do not delete this comment. */
 
 #include <corto/ic/ic.h>
-
-void _ic_scope_add(
+void ic_scope_add(
     ic_scope this,
     ic_node n)
 {
-/* $begin(corto/ic/scope/add) */
     corto_ll_append(this->program, n);
-/* $end */
 }
 
-void _ic_scope_addStorage(
+void ic_scope_addStorage(
     ic_scope this,
     ic_storage s)
 {
-/* $begin(corto/ic/scope/addStorage) */
     corto_ll_append(this->storages, s);
     corto_ptr_setref(&s->scope, this);
-/* $end */
 }
 
-int16_t _ic_scope_construct(
+int16_t ic_scope_construct(
     ic_scope this)
 {
-/* $begin(corto/ic/scope/construct) */
     ic_node(this)->kind = IC_SCOPE;
     return ic_node_construct(ic_node(this));
-/* $end */
 }
 
-ic_storage _ic_scope_lookupStorage(
+ic_storage ic_scope_lookupStorage(
     ic_scope this,
     corto_string name,
     bool recursive)
 {
-/* $begin(corto/ic/scope/lookupStorage) */
     corto_iter storageIter;
     ic_storage result = NULL;
 
@@ -60,14 +46,12 @@ ic_storage _ic_scope_lookupStorage(
     }
 
     return result;
-/* $end */
 }
 
-corto_string _ic_scope_str(
+corto_string ic_scope_str(
     ic_scope this,
     corto_string in)
 {
-/* $begin(corto/ic/scope/str) */
     corto_iter programIter, storageIter;
     ic_storage storage;
     corto_uint32 storages = 0;
@@ -111,5 +95,5 @@ corto_string _ic_scope_str(
     }
 
     return result;
-/* $end */
 }
+
