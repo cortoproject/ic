@@ -39,6 +39,7 @@ ic_storage ic_scope_lookupStorage(
         } else {
             result = NULL;
         }
+
     }
 
     if (!result && this->parent && recursive && !this->isFunction) {
@@ -64,6 +65,7 @@ corto_string ic_scope_str(
         if (storage->kind == IC_VARIABLE) {
             storages ++;
         }
+
     }
 
     if (storages) {
@@ -81,6 +83,7 @@ corto_string ic_scope_str(
               corto_fullpath(NULL, storage->type),
               storage->isReference ? "&" : "");
         }
+
     }
 
     programIter = corto_ll_iter(this->program);

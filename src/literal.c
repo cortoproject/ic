@@ -18,12 +18,14 @@ corto_string ic_literal_str(
         if (corto_primitive(this->value.type)->kind == CORTO_TEXT) {
             in = strappend(in, "\"");
         }
+
         corto_ptr_cast(corto_primitive(this->value.type), this->value.value, corto_primitive(corto_string_o), &result);
         in = strappend(in, result);
         corto_dealloc(result);
         if (corto_primitive(this->value.type)->kind == CORTO_TEXT) {
             in = strappend(in, "\"");
         }
+
     } else {
         in = strappend(in, "(null)");
     }

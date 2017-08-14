@@ -1,7 +1,6 @@
 /* This is a managed file. Do not delete this comment. */
 
 #include <corto/ic/ic.h>
-
 static corto_bool ic_validateSet(ic_op op) {
     corto_bool result = TRUE;
     op->s1 && (ic_node(op->s1)->kind != IC_STORAGE) ? result = FALSE: 0;
@@ -26,7 +25,9 @@ static corto_bool ic_validateBinary(ic_op op) {
         if ((ic_node(op->s2)->kind != IC_STORAGE) && (ic_node(op->s3)->kind != IC_STORAGE)) {
             result = FALSE;
         }
+
     }
+
     return result;
 }
 
@@ -43,6 +44,7 @@ static corto_bool ic_validatePush(ic_op op) {
     } else {
         return TRUE;
     }
+
 }
 
 static corto_string ic_op_derefToString(corto_string string, ic_node s, ic_derefKind mode) {
@@ -54,20 +56,22 @@ static corto_string ic_op_derefToString(corto_string string, ic_node s, ic_deref
             } else {
                 string = strappend(string, " ");
             }
+
         } else {
             if (mode == IC_DEREF_ADDRESS) {
                 string = strappend(string, " &");
             } else {
                 string = strappend(string, " ");
             }
+
         }
+
     } else {
         string = strappend(string, " ");
     }
 
     return string;
 }
-
 
 int16_t ic_op_construct(
     ic_op this)
@@ -87,20 +91,23 @@ corto_string ic_op_str(
     } else if (this->s2 || this->s3) {
         in = strappend(in, " .");
     }
+
     if (this->s2) {
         in = ic_op_derefToString(in, this->s2, this->s2Deref);
         in = ic_node_str(this->s2, in);
     } else if (this->s3) {
         in = strappend(in, " .");
     }
+
     if (this->s3) {
         in = ic_op_derefToString(in, this->s3, this->s3Deref);
         in = ic_node_str(this->s3, in);
     }
+
     return in;
 }
 
-bool ic_op_validate(
+bool ic_op_isValid(
     ic_op this)
 {
     corto_bool result = TRUE;
@@ -161,12 +168,14 @@ bool ic_op_validate(
                this->s2 ? ic_kindStr(ic_node(this->s2)->kind) : "<none>",
                this->s3 ? ic_kindStr(ic_node(this->s3)->kind) : "<none>");
     }
+
 #else
     if (!result) {
     printf("%s:%d: invalid operands (build with IC_TRACING to get more information)\n",
            ic_program_get()->filename,
            this->line);
     }
+
 #endif
     return result;
 }

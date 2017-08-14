@@ -20,8 +20,10 @@ void ic_storage_free(
         if (this->isReference) {
             freeIc->s1Deref = IC_DEREF_ADDRESS;
         }
+
         ic_program_add(ic_program_get(), ic_node(freeIc));
     }
+
 }
 
 corto_string ic_storage_str(

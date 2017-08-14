@@ -21,8 +21,6 @@ int16_t ic_element_construct(
     }
 
     ic_storage(this)->name = corto_strdup(name);
-
     return ic_storage_construct(ic_storage(this));
-
 }
 

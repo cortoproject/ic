@@ -1,18 +1,17 @@
 /* This is a managed file. Do not delete this comment. */
 
 #include <corto/ic/ic.h>
-
 #include "corto/ic/assemble.h"
-
 void ic_program_add(
     ic_program this,
     ic_node n)
 {
 
     if (n->kind == IC_OP) {
-        if (!ic_op_validate(ic_op(n))) {
+        if (!ic_op_isValid(ic_op(n))) {
             this->errors++;
         }
+
     }
 
     if (corto_instanceof(corto_type(ic_storage_o), n)) {
@@ -33,6 +32,7 @@ int16_t ic_program_assemble(
             printf("%s\n", str);
             corto_dealloc(str);
         }
+
     }
 
     this->vmprogram = (corto_word)ic_vmAssemble(this);
@@ -67,6 +67,7 @@ ic_variable ic_program_declareVariable(
         result = ic_variableCreate(name, type, isReference, holdsReturn, isParameter, isReturn);
         ic_scope_addStorage(this->scope, ic_storage(result));
     }
+
     return result;
 }
 
@@ -96,11 +97,13 @@ ic_element ic_program_getElement(
     } else {
         sprintf(name, "*%s", base->name);
     }
+
     result = ic_element(ic_scope_lookupStorage(base->scope, name, FALSE));
     if (!result) {
         result = ic_elementCreate(base, index);
         ic_scope_addStorage(this->scope, ic_storage(result));
     }
+
     return result;
 }
 
@@ -123,6 +126,7 @@ ic_member ic_program_getMember(
         result = ic_memberCreate(base, m);
         ic_scope_addStorage(this->scope, ic_storage(result));
     }
+
     return result;
 }
 
@@ -135,11 +139,13 @@ ic_object ic_program_getObject(
     while(root->parent) {
         root = root->parent;
     }
+
     result = ic_object(ic_scope_lookupStorage(root, corto_fullpath(NULL, o), FALSE));
     if (!result) {
         result = ic_objectCreate(o);
         ic_scope_addStorage(root, ic_storage(result));
     }
+
     return result;
 }
 
@@ -161,6 +167,7 @@ void ic_program_popAccumulator(
     if (acc->holdsReturn) {
         ic_storage_free(acc);
     }
+
 }
 
 void ic_program_popScope(
@@ -176,12 +183,15 @@ void ic_program_popScope(
             if ((storage->kind == IC_VARIABLE) && !((ic_variable)storage)->isReturn && !((ic_variable)storage)->isParameter) {
                 ic_storage_free(storage);
             }
+
         }
+
     }
 
     if (this->scope->parent) {
         this->scope = this->scope->parent;
     }
+
 }
 
 ic_accumulator ic_program_pushAccumulator(

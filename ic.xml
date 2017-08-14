@@ -1,4 +1,4 @@
-<corto xmlns:corto="http://corto.io/packages/corto/fmt/xml">
+<corto xmlns:corto="http://corto.io/packages/driver/fmt/xml">
     <corto:package name="corto" url="http://corto.io/doc/corto">
         <corto:package name="ic" url="http://corto.io/doc/corto/ic">
 
@@ -185,7 +185,7 @@
                     <member name="s2Deref" type="derefKind"/>
                     <member name="s3Deref" type="derefKind"/>
                     <member name="s1Any" type="bool"/>
-                    <method name="validate()" returnType="bool"/>
+                    <method name="isValid()" returnType="bool"/>
                     <method name="str(string in)" returnType="string"/>
                     <method name="construct()" returnType="int16"/>
                 </corto:scope>
