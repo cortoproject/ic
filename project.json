@@ -2,6 +2,9 @@
     "id": "corto/ic",
     "type": "package",
     "value": {
+        "author": "Sander Mertens",
+        "version": "1.0.0",
+        "description": "Intermediate code compiler to corto vm",        
         "dependencies": ["corto/vm", "corto/ic/c"]
     }
 }
