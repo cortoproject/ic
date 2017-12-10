@@ -1,9 +1,7 @@
 /* This is a managed file. Do not delete this comment. */
 
 #include <corto/ic/ic.h>
-
-corto_threadKey IC_PROGRAM_KEY;
-
+corto_tls IC_PROGRAM_KEY;
 ic_opKind ic_opKindFromOperator(
     corto_operatorKind _operator)
 {
@@ -40,12 +38,12 @@ ic_opKind ic_opKindFromOperator(
     return ic_set;
 }
 
-int icMain(int argc, char *argv[]) {
+int cortomain(int argc, char *argv[]) {
     CORTO_UNUSED(argc);
     CORTO_UNUSED(argv);
-    if (corto_threadTlsKey(&IC_PROGRAM_KEY, NULL)) {
+    if (corto_tls_new(&IC_PROGRAM_KEY, NULL)) {
         return -1;
     }
+
     return 0;
 }
-

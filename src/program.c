@@ -48,8 +48,8 @@ error:
 int16_t ic_program_construct(
     ic_program this)
 {
-    extern corto_threadKey IC_PROGRAM_KEY;
-    corto_threadTlsSet(IC_PROGRAM_KEY, this);
+    extern corto_tls IC_PROGRAM_KEY;
+    corto_tls_set(IC_PROGRAM_KEY, this);
     return 0;
 }
 
@@ -73,8 +73,8 @@ ic_variable ic_program_declareVariable(
 
 ic_program ic_program_get(void)
 {
-    extern corto_threadKey IC_PROGRAM_KEY;
-    return (ic_program)corto_threadTlsGet(IC_PROGRAM_KEY);
+    extern corto_tls IC_PROGRAM_KEY;
+    return (ic_program)corto_tls_get(IC_PROGRAM_KEY);
 }
 
 uint32_t ic_program_getAccId(
