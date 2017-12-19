@@ -1610,7 +1610,7 @@ static corto_int16 ic_op_toVm(ic_op op, ic_vmProgram *program) {
             if ((t->kind == CORTO_COMPOSITE) && (corto_interface(t)->kind == CORTO_PROCEDURE)) {
                 f = o;
                 if (f->kind == CORTO_PROCEDURE_VM) {
-                    if (corto_checkState(f, CORTO_VALID)) {
+                    if (corto_check_state(f, CORTO_VALID)) {
                         vm_program inlineProgram = (vm_program)f->fptr;
                         if (inlineProgram->storage > program->maxStackSize) {
                             program->maxStackSize = inlineProgram->storage;

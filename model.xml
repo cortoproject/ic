@@ -82,7 +82,7 @@
             <class name="node">
                 <corto:scope>
                     <member name="kind" type="ic/kind" modifiers="readonly"/>
-                    <overridable name="str(string in)" returnType="string"/>
+                    <overridable name="str(inout:string in)" returnType="string"/>
                     <method name="construct()" returnType="int16"/>
                 </corto:scope>
             </class>
@@ -107,7 +107,7 @@
                     <member name="used" type="uint32" modifiers="readonly"/>
                     <member name="scope" type="ic/scope" modifiers="readonly"/>
                     <method name="free()"/>
-                    <method name="str(string in)" returnType="string"/>
+                    <method name="str(inout:string in)" returnType="string"/>
                     <method name="construct()" returnType="int16"/>
                 </corto:scope>
             </class>
@@ -153,7 +153,7 @@
             <class name="literal" base="node" baseAccess="readonly">
                 <corto:scope>
                     <member name="value" type="any"/>
-                    <method name="str(string in)" returnType="string"/>
+                    <method name="str(inout:string in)" returnType="string"/>
                     <method name="construct()" returnType="int16"/>
                 </corto:scope>
             </class>
@@ -161,7 +161,7 @@
             <class name="label" base="node" baseAccess="readonly">
                 <corto:scope>
                     <member name="id" type="uint32" modifiers="readonly"/>
-                    <method name="str(string in)" returnType="string"/>
+                    <method name="str(inout:string in)" returnType="string"/>
                     <method name="construct()" returnType="int16"/>
                 </corto:scope>
             </class>
@@ -169,7 +169,7 @@
             <class name="function" base="node" baseAccess="readonly">
                 <corto:scope>
                     <member name="function" type="function"/>
-                    <method name="str(string in)" returnType="string"/>
+                    <method name="str(inout:string in)" returnType="string"/>
                     <method name="construct()" returnType="int16"/>
                 </corto:scope>
             </class>
@@ -186,7 +186,7 @@
                     <member name="s3Deref" type="derefKind"/>
                     <member name="s1Any" type="bool"/>
                     <method name="isValid()" returnType="bool"/>
-                    <method name="str(string in)" returnType="string"/>
+                    <method name="str(inout:string in)" returnType="string"/>
                     <method name="construct()" returnType="int16"/>
                 </corto:scope>
             </class>
@@ -200,7 +200,7 @@
                     <method name="lookupStorage(string name,bool recursive)" returnType="storage"/>
                     <method name="add(node n)"/>
                     <method name="addStorage(storage s)"/>
-                    <method name="str(string in)" returnType="string"/>
+                    <method name="str(inout:string in)" returnType="string"/>
                     <method name="construct()" returnType="int16"/>
                 </corto:scope>
             </class>

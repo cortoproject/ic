@@ -25,7 +25,7 @@ int16_t ic_scope_construct(
 
 ic_storage ic_scope_lookupStorage(
     ic_scope this,
-    corto_string name,
+    const char *name,
     bool recursive)
 {
     corto_iter storageIter;
@@ -51,7 +51,7 @@ ic_storage ic_scope_lookupStorage(
 
 corto_string ic_scope_str(
     ic_scope this,
-    corto_string in)
+    char *in)
 {
     corto_iter programIter, storageIter;
     ic_storage storage;

@@ -11,7 +11,7 @@ int16_t ic_node_construct(
 
 corto_string ic_node_str_v(
     ic_node this,
-    corto_string in)
+    char *in)
 {
 
     CORTO_UNUSED(this);
