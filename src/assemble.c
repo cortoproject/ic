@@ -1596,7 +1596,7 @@ static corto_int16 ic_op_toVm(ic_op op, ic_vmProgram *program) {
         corto_function f;
 
         /* When the function is a vm-function the vm will directly invoke the function
-         * without using corto_call. To avoid memcpy'ing between the stack of the calling
+         * without using corto_invoke. To avoid memcpy'ing between the stack of the calling
          * function and the storage of the called function the stack is made as big as the
          * largest storage of all called functions.
          *

@@ -13,7 +13,7 @@ void ic_scope_addStorage(
     ic_storage s)
 {
     corto_ll_append(this->storages, s);
-    corto_ptr_setref(&s->scope, this);
+    corto_set_ref(&s->scope, this);
 }
 
 int16_t ic_scope_construct(
