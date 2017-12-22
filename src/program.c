@@ -55,7 +55,7 @@ int16_t ic_program_construct(
 
 ic_variable ic_program_declareVariable(
     ic_program this,
-    corto_string name,
+    const char *name,
     corto_type type,
     bool isReference,
     bool holdsReturn,
@@ -151,7 +151,7 @@ ic_object ic_program_getObject(
 
 ic_variable ic_program_getVariable(
     ic_program this,
-    corto_string name)
+    const char *name)
 {
     return ic_variable(ic_scope_lookupStorage(this->scope, name, TRUE));
 }

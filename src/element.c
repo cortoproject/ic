@@ -8,8 +8,8 @@ int16_t ic_element_construct(
     corto_collection type = corto_collection(this->base->type);
 
     ic_storage(this)->kind = IC_ELEMENT;
-    corto_ptr_setref(&ic_storage(this)->type, type->elementType);
-    corto_ptr_setref(&ic_storage(this)->base, this->base);
+    corto_set_ref(&ic_storage(this)->type, type->elementType);
+    corto_set_ref(&ic_storage(this)->base, this->base);
     ic_storage(this)->isReference = type->elementType->reference;
 
     if (this->index) {

@@ -6,7 +6,7 @@ int16_t ic_object_construct(
 {
     ic_storage(this)->kind = IC_OBJECT;
     ic_storage(this)->name = corto_strdup(corto_fullpath(NULL, this->ptr));
-    corto_ptr_setref(&ic_storage(this)->type, corto_typeof(this->ptr));
+    corto_set_ref(&ic_storage(this)->type, corto_typeof(this->ptr));
     ic_storage(this)->isReference = TRUE;
     return ic_storage_construct(ic_storage(this));
 }

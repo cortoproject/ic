@@ -10,7 +10,7 @@ int16_t ic_literal_construct(
 
 corto_string ic_literal_str(
     ic_literal this,
-    corto_string in)
+    char *in)
 {
     corto_string result = NULL;
 

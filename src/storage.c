@@ -28,7 +28,7 @@ void ic_storage_free(
 
 corto_string ic_storage_str(
     ic_storage this,
-    corto_string in)
+    char *in)
 {
     return strappend(in, this->name);
 }

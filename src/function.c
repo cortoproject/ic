@@ -10,7 +10,7 @@ int16_t ic_function_construct(
 
 corto_string ic_function_str(
     ic_function this,
-    corto_string in)
+    char *in)
 {
     in = strappend(in, "\n%%function %s", corto_fullpath(NULL, this->function));
     return in;

@@ -82,7 +82,7 @@ int16_t ic_op_construct(
 
 corto_string ic_op_str(
     ic_op this,
-    corto_string in)
+    char *in)
 {
     in = strappend(in, "  %s", corto_ptr_str(&this->kind, ic_opKind_o, 0));
     if (this->s1) {

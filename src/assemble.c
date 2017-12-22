@@ -1596,7 +1596,7 @@ static corto_int16 ic_op_toVm(ic_op op, ic_vmProgram *program) {
         corto_function f;
 
         /* When the function is a vm-function the vm will directly invoke the function
-         * without using corto_call. To avoid memcpy'ing between the stack of the calling
+         * without using corto_invoke. To avoid memcpy'ing between the stack of the calling
          * function and the storage of the called function the stack is made as big as the
          * largest storage of all called functions.
          *
@@ -1610,7 +1610,7 @@ static corto_int16 ic_op_toVm(ic_op op, ic_vmProgram *program) {
             if ((t->kind == CORTO_COMPOSITE) && (corto_interface(t)->kind == CORTO_PROCEDURE)) {
                 f = o;
                 if (f->kind == CORTO_PROCEDURE_VM) {
-                    if (corto_checkState(f, CORTO_VALID)) {
+                    if (corto_check_state(f, CORTO_VALID)) {
                         vm_program inlineProgram = (vm_program)f->fptr;
                         if (inlineProgram->storage > program->maxStackSize) {
                             program->maxStackSize = inlineProgram->storage;

@@ -7,8 +7,8 @@ int16_t ic_member_construct(
     corto_id name;
 
     ic_storage(this)->kind = IC_MEMBER;
-    corto_ptr_setref(&ic_storage(this)->type, this->member->type);
-    corto_ptr_setref(&ic_storage(this)->base, this->base);
+    corto_set_ref(&ic_storage(this)->type, this->member->type);
+    corto_set_ref(&ic_storage(this)->base, this->base);
     ic_storage(this)->isReference = this->member->type->reference;
     sprintf(name, "%s.%s", this->base->name, corto_idof(this->member));
     ic_storage(this)->name = corto_strdup(name);

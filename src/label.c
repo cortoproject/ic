@@ -11,7 +11,7 @@ int16_t ic_label_construct(
 
 corto_string ic_label_str(
     ic_label this,
-    corto_string in)
+    char *in)
 {
     in = strappend(in, "%%L%d", this->id);
     return in;
