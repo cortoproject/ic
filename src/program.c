@@ -15,9 +15,9 @@ void ic_program_add(
     }
 
     if (corto_instanceof(corto_type(ic_storage_o), n)) {
-        ic_nodeListAppend(this->scope->storages, n);
+        ic_nodeList_append(this->scope->storages, n);
     } else {
-        ic_nodeListAppend(this->scope->program, n);
+        ic_nodeList_append(this->scope->program, n);
     }
 
 }
@@ -62,9 +62,20 @@ ic_variable ic_program_declareVariable(
     bool isParameter,
     bool isReturn)
 {
-    ic_variable result = ic_variable(ic_scope_lookupStorage(this->scope, name, FALSE));
+    ic_variable result = ic_variable(
+        ic_scope_lookupStorage(this->scope, name, FALSE));
+
     if (!result) {
-        result = ic_variableCreate(name, type, isReference, holdsReturn, isParameter, isReturn);
+        result = ic_variable_create(
+            NULL, 
+            NULL, 
+            name, 
+            type, 
+            isReference, 
+            holdsReturn, 
+            isParameter, 
+            isReturn);
+
         ic_scope_addStorage(this->scope, ic_storage(result));
     }
 
@@ -100,7 +111,7 @@ ic_element ic_program_getElement(
 
     result = ic_element(ic_scope_lookupStorage(base->scope, name, FALSE));
     if (!result) {
-        result = ic_elementCreate(base, index);
+        result = ic_element_create(NULL, NULL, base, index);
         ic_scope_addStorage(this->scope, ic_storage(result));
     }
 
@@ -123,7 +134,7 @@ ic_member ic_program_getMember(
     sprintf(name, "%s.%s", base->name, corto_idof(m));
     result = ic_member(ic_scope_lookupStorage(base->scope, name, FALSE));
     if (!result) {
-        result = ic_memberCreate(base, m);
+        result = ic_member_create(NULL, NULL, base, m);
         ic_scope_addStorage(this->scope, ic_storage(result));
     }
 
@@ -140,9 +151,10 @@ ic_object ic_program_getObject(
         root = root->parent;
     }
 
-    result = ic_object(ic_scope_lookupStorage(root, corto_fullpath(NULL, o), FALSE));
+    result = ic_object(
+        ic_scope_lookupStorage(root, corto_fullpath(NULL, o), FALSE));
     if (!result) {
-        result = ic_objectCreate(o);
+        result = ic_object_create(NULL, NULL, o);
         ic_scope_addStorage(root, ic_storage(result));
     }
 
@@ -180,7 +192,10 @@ void ic_program_popScope(
         storageIter = corto_ll_iter(this->scope->storages);
         while(corto_iter_hasNext(&storageIter)) {
             storage = corto_iter_next(&storageIter);
-            if ((storage->kind == IC_VARIABLE) && !((ic_variable)storage)->isReturn && !((ic_variable)storage)->isParameter) {
+            if ((storage->kind == IC_VARIABLE) && 
+                !((ic_variable)storage)->isReturn && 
+                !((ic_variable)storage)->isParameter) 
+            {
                 ic_storage_free(storage);
             }
 
@@ -206,7 +221,13 @@ ic_accumulator ic_program_pushAccumulator(
     this->autoAccId++;
 
     this->accumulatorStack[this->accumulatorSp] =
-        ic_accumulatorCreate(name, type ? type : corto_void_o, isReference, holdsReturn);
+        ic_accumulator_create(
+            NULL, 
+            NULL, 
+            name, 
+            type ? type : corto_void_o, 
+            isReference,
+            holdsReturn);
 
     this->accumulatorSp++;
     return this->accumulatorStack[this->accumulatorSp-1];
@@ -220,7 +241,7 @@ ic_scope ic_program_pushFunction(
     ic_scope scope;
 
     /* Add function-label */
-    label = ic_functionCreate(function);
+    label = ic_function_create(NULL, NULL, function);
     ic_program_add(this, ic_node(label));
 
     /* Push function-scope */
@@ -235,7 +256,7 @@ ic_scope ic_program_pushFunction(
 ic_scope ic_program_pushScope(
     ic_program this)
 {
-    this->scope = ic_scopeCreate(this->scope, FALSE);
+    this->scope = ic_scope_create(NULL, NULL, this->scope, FALSE);
 
     if (this->scope->parent) {
         corto_ll_append(this->scope->parent->program, this->scope);

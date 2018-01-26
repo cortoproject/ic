@@ -1418,7 +1418,7 @@ static void ic_getVmOp(ic_vmProgram *program, ic_op op) {
 
     case ic_push:
         if (op->s1Any) {
-            op2 = (ic_node)ic_addressCreate((corto_word)ic_valueType(op->s1));
+            op2 = (ic_node)ic_address_create(NULL, NULL, (corto_word)ic_valueType(op->s1));
             opDeref2 = IC_DEREF_ADDRESS;
         }
     case ic_define:
@@ -1468,7 +1468,7 @@ static void ic_getVmOp(ic_vmProgram *program, ic_op op) {
     case ic_init:
     case ic_deinit: {
         op1 = op->s1;
-        op2 = (ic_node)ic_objectCreate(ic_storage(op->s1)->type);
+        op2 = (ic_node)ic_object_create(NULL, NULL, ic_storage(op->s1)->type);
         opDeref1 = IC_DEREF_VALUE;
         opDeref2 = IC_DEREF_ADDRESS;
         break;
@@ -1478,7 +1478,7 @@ static void ic_getVmOp(ic_vmProgram *program, ic_op op) {
         if (ic_storage(op->s2)->type->kind == CORTO_ITERATOR) {
             op1 = op->s2;
             op2 = op->s3;
-            op3 = (ic_node)ic_objectCreate(ic_storage(op->s3)->type);
+            op3 = (ic_node)ic_object_create(NULL, NULL, ic_storage(op->s3)->type);
             opDeref1 = op->s2Deref;
             opDeref2 = op->s3Deref;
             opDeref3 = IC_DEREF_ADDRESS;

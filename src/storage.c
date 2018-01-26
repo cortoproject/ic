@@ -16,7 +16,7 @@ void ic_storage_free(
         ic_op freeIc;
 
         /* Insert free-instruction */
-        freeIc = ic_opCreate(0, ic_free, ic_node(this), NULL, NULL, IC_DEREF_VALUE, 0, 0, FALSE);
+        freeIc = ic_op_create(NULL, NULL, 0, ic_free, ic_node(this), NULL, NULL, IC_DEREF_VALUE, 0, 0, FALSE);
         if (this->isReference) {
             freeIc->s1Deref = IC_DEREF_ADDRESS;
         }
