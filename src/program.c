@@ -15,9 +15,9 @@ void ic_program_add(
     }
 
     if (corto_instanceof(corto_type(ic_storage_o), n)) {
-        ic_nodeList_append(this->scope->storages, n);
+        ic_nodeList__append(this->scope->storages, n);
     } else {
-        ic_nodeList_append(this->scope->program, n);
+        ic_nodeList__append(this->scope->program, n);
     }
 
 }
@@ -66,7 +66,7 @@ ic_variable ic_program_declareVariable(
         ic_scope_lookupStorage(this->scope, name, FALSE));
 
     if (!result) {
-        result = ic_variable_create(
+        result = ic_variable__create(
             NULL, 
             NULL, 
             name, 
@@ -111,7 +111,7 @@ ic_element ic_program_getElement(
 
     result = ic_element(ic_scope_lookupStorage(base->scope, name, FALSE));
     if (!result) {
-        result = ic_element_create(NULL, NULL, base, index);
+        result = ic_element__create(NULL, NULL, base, index);
         ic_scope_addStorage(this->scope, ic_storage(result));
     }
 
@@ -134,7 +134,7 @@ ic_member ic_program_getMember(
     sprintf(name, "%s.%s", base->name, corto_idof(m));
     result = ic_member(ic_scope_lookupStorage(base->scope, name, FALSE));
     if (!result) {
-        result = ic_member_create(NULL, NULL, base, m);
+        result = ic_member__create(NULL, NULL, base, m);
         ic_scope_addStorage(this->scope, ic_storage(result));
     }
 
@@ -154,7 +154,7 @@ ic_object ic_program_getObject(
     result = ic_object(
         ic_scope_lookupStorage(root, corto_fullpath(NULL, o), FALSE));
     if (!result) {
-        result = ic_object_create(NULL, NULL, o);
+        result = ic_object__create(NULL, NULL, o);
         ic_scope_addStorage(root, ic_storage(result));
     }
 
@@ -221,7 +221,7 @@ ic_accumulator ic_program_pushAccumulator(
     this->autoAccId++;
 
     this->accumulatorStack[this->accumulatorSp] =
-        ic_accumulator_create(
+        ic_accumulator__create(
             NULL, 
             NULL, 
             name, 
@@ -241,7 +241,7 @@ ic_scope ic_program_pushFunction(
     ic_scope scope;
 
     /* Add function-label */
-    label = ic_function_create(NULL, NULL, function);
+    label = ic_function__create(NULL, NULL, function);
     ic_program_add(this, ic_node(label));
 
     /* Push function-scope */
@@ -256,7 +256,7 @@ ic_scope ic_program_pushFunction(
 ic_scope ic_program_pushScope(
     ic_program this)
 {
-    this->scope = ic_scope_create(NULL, NULL, this->scope, FALSE);
+    this->scope = ic_scope__create(NULL, NULL, this->scope, FALSE);
 
     if (this->scope->parent) {
         corto_ll_append(this->scope->parent->program, this->scope);

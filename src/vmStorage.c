@@ -147,7 +147,7 @@ static vm_op *ic_vmStorageAssembleElement(
         /* Create value for elementSize */
         elementSize = corto_type_sizeof(collection->elementType);
         corto_any l = {corto_type(corto_uint32_o), &elementSize, FALSE};
-        ic_elementSize = (ic_node)ic_literal_create(NULL, NULL, l);
+        ic_elementSize = (ic_node)ic_literal__create(NULL, NULL, l);
 
         switch(collection->kind) {
         case CORTO_ARRAY:
