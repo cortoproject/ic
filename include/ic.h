@@ -8,13 +8,12 @@
 #define CORTO_IC_H
 
 #include <corto/corto.h>
-#include <corto/corto.h>
 #include <corto/ic/_project.h>
 #include <corto/c/c.h>
 #include <corto/vm/vm.h>
 
 /* $header() */
-/* Enter additional code here. */
+/* Definitions that are required by package headers (native types) go here. */
 /* $end */
 
 #include <corto/ic/_type.h>
@@ -23,7 +22,7 @@
 #include <corto/ic/c/_api.h>
 
 /* $body() */
-/* Enter code that requires types here */
+/* Definitions here that need your package headers go here. */
 /* $end */
 
 #endif

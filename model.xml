@@ -195,8 +195,8 @@
                 <corto:scope>
                     <member name="parent" type="scope"/>
                     <member name="isFunction" type="bool"/>
-                    <member name="storages" type="list{storage}" modifiers="readonly"/>
-                    <member name="program" type="list{node}" modifiers="readonly"/>
+                    <member name="storages" type="list{storage}" modifiers="readonly|not_null"/>
+                    <member name="program" type="list{node}" modifiers="readonly|not_null"/>
                     <method name="lookupStorage(string name,bool recursive)" returnType="storage"/>
                     <method name="add(node n)"/>
                     <method name="addStorage(storage s)"/>
@@ -208,11 +208,11 @@
             <class name="program">
                 <corto:scope>
                     <member name="filename" type="string"/>
-                    <member name="storages" type="list{storage}" modifiers="readonly"/>
-                    <member name="scopes" type="list{scope}" modifiers="readonly"/>
-                    <member name="labels" type="list{label}" modifiers="readonly"/>
-                    <member name="literals" type="list{literal}" modifiers="readonly"/>
-                    <member name="ops" type="list{op}" modifiers="readonly"/>
+                    <member name="storages" type="list{storage}" modifiers="readonly|not_null"/>
+                    <member name="scopes" type="list{scope}" modifiers="readonly|not_null"/>
+                    <member name="labels" type="list{label}" modifiers="readonly|not_null"/>
+                    <member name="literals" type="list{literal}" modifiers="readonly|not_null"/>
+                    <member name="ops" type="list{op}" modifiers="readonly|not_null"/>
                     <member name="labelCount" type="uint32" modifiers="readonly"/>
                     <member name="accumulatorSp" type="uint32" modifiers="readonly"/>
                     <member name="accumulatorStack" type="array{accumulator, 256}" modifiers="readonly"/>
