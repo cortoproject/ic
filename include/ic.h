@@ -1,5 +1,4 @@
 /* ic.h
- *
  * This is the main package file. Include this file in other projects.
  * Only modify inside the header-end and body-end sections.
  */
@@ -19,6 +18,7 @@
 #include <corto/ic/_type.h>
 #include <corto/ic/_interface.h>
 #include <corto/ic/_load.h>
+#include <corto/ic/_binding.h>
 #include <corto/ic/c/_api.h>
 
 /* $body() */
