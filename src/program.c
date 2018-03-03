@@ -25,16 +25,6 @@ void ic_program_add(
 int16_t ic_program_assemble(
     ic_program this)
 {
-
-    if (CORTO_DEBUG_ENABLED) {
-        corto_string str = ic_program_str(this);
-        if (str) {
-            printf("%s\n", str);
-            corto_dealloc(str);
-        }
-
-    }
-
     this->vmprogram = (corto_word)ic_vmAssemble(this);
     if (!this->vmprogram) {
         goto error;
@@ -67,13 +57,13 @@ ic_variable ic_program_declareVariable(
 
     if (!result) {
         result = ic_variable__create(
-            NULL, 
-            NULL, 
-            name, 
-            type, 
-            isReference, 
-            holdsReturn, 
-            isParameter, 
+            NULL,
+            NULL,
+            name,
+            type,
+            isReference,
+            holdsReturn,
+            isParameter,
             isReturn);
 
         ic_scope_addStorage(this->scope, ic_storage(result));
@@ -192,9 +182,9 @@ void ic_program_popScope(
         storageIter = corto_ll_iter(this->scope->storages);
         while(corto_iter_hasNext(&storageIter)) {
             storage = corto_iter_next(&storageIter);
-            if ((storage->kind == IC_VARIABLE) && 
-                !((ic_variable)storage)->isReturn && 
-                !((ic_variable)storage)->isParameter) 
+            if ((storage->kind == IC_VARIABLE) &&
+                !((ic_variable)storage)->isReturn &&
+                !((ic_variable)storage)->isParameter)
             {
                 ic_storage_free(storage);
             }
@@ -222,10 +212,10 @@ ic_accumulator ic_program_pushAccumulator(
 
     this->accumulatorStack[this->accumulatorSp] =
         ic_accumulator__create(
-            NULL, 
-            NULL, 
-            name, 
-            type ? type : corto_void_o, 
+            NULL,
+            NULL,
+            name,
+            type ? type : corto_void_o,
             isReference,
             holdsReturn);
 
@@ -285,4 +275,3 @@ corto_string ic_program_str(
 #endif
     return result;
 }
-

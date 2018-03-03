@@ -173,20 +173,16 @@ void ic_vmProgram_finalize(ic_vmProgram *vmProgram) {
         corto_define(function);
 
 #ifdef CORTO_IC_TRACING
-        if (CORTO_DEBUG_ENABLED)
-        {
             corto_string programStr = vm_programToString(vmProgram->program, NULL);
             printf("%s %s\n%s\n",
                 corto_idof(corto_typeof(function)),
                 corto_fullpath(NULL, function),
                 programStr);
             corto_dealloc(programStr);
-        }
 #endif
     }
-
 #ifdef CORTO_IC_TRACING
-    else if (CORTO_DEBUG_ENABLED) {
+    else {
         corto_string programStr = vm_programToString(vmProgram->program, NULL);
         printf("main\n%s\n", programStr);
         corto_dealloc(programStr);
