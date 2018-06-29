@@ -51,7 +51,7 @@ ic_vmStorage *ic_vmStorageCreate(ic_vmProgram *program, ic_storage acc, corto_ui
         {
             corto_collection type = corto_collection(acc->base->type);
             corto_uint32 index = *(corto_uint32*)ic_literal((ic_element(acc))->index)->value.value;
-            result->offset = corto_type_sizeof(type->elementType) * index;
+            result->offset = corto_type_sizeof(type->element_type) * index;
         } else {
             result->alwaysCompute = TRUE;
         }
@@ -145,7 +145,7 @@ static vm_op *ic_vmStorageAssembleElement(
         }
 
         /* Create value for elementSize */
-        elementSize = corto_type_sizeof(collection->elementType);
+        elementSize = corto_type_sizeof(collection->element_type);
         corto_any l = {corto_type(corto_uint32_o), &elementSize, FALSE};
         ic_elementSize = (ic_node)ic_literal__create(NULL, NULL, l);
 
@@ -159,7 +159,7 @@ static vm_op *ic_vmStorageAssembleElement(
             ic_vmSetOp3Addr(program, vmOp, IC_VMTYPE_W, IC_VMOPERAND_R, indexKind, IC_VMOPERAND_V, ic_node(acc->ic), ic_element(storage->ic)->index, ic_elementSize);
             break;
         case CORTO_LIST:
-            if (corto_collection_requiresAlloc(collection->elementType)) {
+            if (corto_collection_requires_alloc(collection->element_type)) {
                 vmOp->op = ic_getVmELEML(type, IC_VMTYPE_W, IC_VMOPERAND_R, indexKind, 0);
             } else {
                 vmOp->op = ic_getVmELEMLX(type, IC_VMTYPE_W, IC_VMOPERAND_R, indexKind, 0);
@@ -167,7 +167,7 @@ static vm_op *ic_vmStorageAssembleElement(
             ic_vmSetOp2Addr(program, vmOp, IC_VMTYPE_W, IC_VMOPERAND_R, indexKind, ic_node(acc->ic), ((ic_element)storage->ic)->index);
             break;
         case CORTO_MAP:
-            if (corto_collection_requiresAlloc(collection->elementType)) {
+            if (corto_collection_requires_alloc(collection->element_type)) {
                 vmOp->op = ic_getVmELEMM(type, IC_VMTYPE_W, IC_VMOPERAND_R, indexKind, 0);
             } else {
                 vmOp->op = ic_getVmELEMMX(type, IC_VMTYPE_W, IC_VMOPERAND_R, indexKind, 0);

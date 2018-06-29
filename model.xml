@@ -82,15 +82,15 @@
             <class name="node">
                 <corto:scope>
                     <member name="kind" type="ic/kind" modifiers="readonly"/>
-                    <overridable name="str(inout:string in)" returnType="string"/>
-                    <method name="construct()" returnType="int16"/>
+                    <overridable name="str(inout:string in)" return_type="string"/>
+                    <method name="construct()" return_type="int16"/>
                 </corto:scope>
             </class>
 
             <class name="address" base="node">
                 <corto:scope>
                     <member name="value" type="word"/>
-                    <method name="construct()" returnType="int16"/>
+                    <method name="construct()" return_type="int16"/>
                 </corto:scope>
             </class>
 
@@ -107,15 +107,15 @@
                     <member name="used" type="uint32" modifiers="readonly"/>
                     <member name="scope" type="ic/scope" modifiers="readonly"/>
                     <method name="free()"/>
-                    <method name="str(inout:string in)" returnType="string"/>
-                    <method name="construct()" returnType="int16"/>
+                    <method name="str(inout:string in)" return_type="string"/>
+                    <method name="construct()" return_type="int16"/>
                 </corto:scope>
             </class>
 
-            <class name="object" base="storage" baseAccess="readonly">
+            <class name="object" base="storage" base_modifiers="readonly">
                 <corto:scope>
                     <member name="ptr" type="object"/>
-                    <method name="construct()" returnType="int16"/>
+                    <method name="construct()" return_type="int16"/>
                 </corto:scope>
             </class>
 
@@ -123,54 +123,54 @@
                 <corto:scope>
                     <member name="isParameter" type="bool"/>
                     <member name="isReturn" type="bool"/>
-                    <method name="construct()" returnType="int16"/>
+                    <method name="construct()" return_type="int16"/>
                 </corto:scope>
             </class>
 
-            <class name="member" base="storage" baseAccess="readonly">
+            <class name="member" base="storage" base_modifiers="readonly">
                 <corto:scope>
                     <member name="base" type="storage"/>
                     <member name="member" type="member"/>
-                    <method name="construct()" returnType="int16"/>
+                    <method name="construct()" return_type="int16"/>
                 </corto:scope>
             </class>
 
-            <class name="element" base="storage" baseAccess="readonly">
+            <class name="element" base="storage" base_modifiers="readonly">
                 <corto:scope>
                     <member name="base" type="storage"/>
                     <member name="index" type="node"/>
                     <member name="variableIndex" type="bool" modifiers="readonly"/>
-                    <method name="construct()" returnType="int16"/>
+                    <method name="construct()" return_type="int16"/>
                 </corto:scope>
             </class>
 
             <class name="accumulator" base="storage">
                 <corto:scope>
-                    <method name="construct()" returnType="int16"/>
+                    <method name="construct()" return_type="int16"/>
                 </corto:scope>
             </class>
 
-            <class name="literal" base="node" baseAccess="readonly">
+            <class name="literal" base="node" base_modifiers="readonly">
                 <corto:scope>
                     <member name="value" type="any"/>
-                    <method name="str(inout:string in)" returnType="string"/>
-                    <method name="construct()" returnType="int16"/>
+                    <method name="str(inout:string in)" return_type="string"/>
+                    <method name="construct()" return_type="int16"/>
                 </corto:scope>
             </class>
 
-            <class name="label" base="node" baseAccess="readonly">
+            <class name="label" base="node" base_modifiers="readonly">
                 <corto:scope>
                     <member name="id" type="uint32" modifiers="readonly"/>
-                    <method name="str(inout:string in)" returnType="string"/>
-                    <method name="construct()" returnType="int16"/>
+                    <method name="str(inout:string in)" return_type="string"/>
+                    <method name="construct()" return_type="int16"/>
                 </corto:scope>
             </class>
 
-            <class name="function" base="node" baseAccess="readonly">
+            <class name="function" base="node" base_modifiers="readonly">
                 <corto:scope>
                     <member name="function" type="function"/>
-                    <method name="str(inout:string in)" returnType="string"/>
-                    <method name="construct()" returnType="int16"/>
+                    <method name="str(inout:string in)" return_type="string"/>
+                    <method name="construct()" return_type="int16"/>
                 </corto:scope>
             </class>
 
@@ -185,9 +185,9 @@
                     <member name="s2Deref" type="derefKind"/>
                     <member name="s3Deref" type="derefKind"/>
                     <member name="s1Any" type="bool"/>
-                    <method name="isValid()" returnType="bool"/>
-                    <method name="str(inout:string in)" returnType="string"/>
-                    <method name="construct()" returnType="int16"/>
+                    <method name="isValid()" return_type="bool"/>
+                    <method name="str(inout:string in)" return_type="string"/>
+                    <method name="construct()" return_type="int16"/>
                 </corto:scope>
             </class>
 
@@ -197,11 +197,11 @@
                     <member name="isFunction" type="bool"/>
                     <member name="storages" type="list{storage}" modifiers="readonly|not_null"/>
                     <member name="program" type="list{node}" modifiers="readonly|not_null"/>
-                    <method name="lookupStorage(string name,bool recursive)" returnType="storage"/>
+                    <method name="lookupStorage(string name,bool recursive)" return_type="storage"/>
                     <method name="add(node n)"/>
                     <method name="addStorage(storage s)"/>
-                    <method name="str(inout:string in)" returnType="string"/>
-                    <method name="construct()" returnType="int16"/>
+                    <method name="str(inout:string in)" return_type="string"/>
+                    <method name="construct()" return_type="int16"/>
                 </corto:scope>
             </class>
 
@@ -221,28 +221,28 @@
                     <member name="errors" type="uint32" modifiers="readonly"/>
                     <member name="labelCount" type="uint32" modifiers="local|private"/>
                     <member name="vmprogram" type="word" modifiers="readonly"/>
-                    <method name="construct()" returnType="int16"/>
+                    <method name="construct()" return_type="int16"/>
                     <method name="add(node n)"/>
-                    <method name="pushAccumulator(type type,bool isReference,bool holdsReturn)" returnType="accumulator"/>
+                    <method name="pushAccumulator(type type,bool isReference,bool holdsReturn)" return_type="accumulator"/>
                     <method name="popAccumulator()"/>
-                    <method name="pushScope()" returnType="ic/scope"/>
-                    <method name="pushFunction(function function)" returnType="ic/scope"/>
+                    <method name="pushScope()" return_type="ic/scope"/>
+                    <method name="pushFunction(function function)" return_type="ic/scope"/>
                     <method name="popScope()"/>
-                    <method name="assemble()" returnType="int16"/>
-                    <method name="run(word result,sequence{string} argv)" returnType="int16"/>
-                    <method name="str()" returnType="string"/>
-                    <method name="getLabel()" returnType="uint32"/>
-                    <method name="getAccId()" returnType="uint32"/>
-                    <method name="getObject(object o)" returnType="ic/object"/>
-                    <method name="getVariable(string name)" returnType="ic/variable"/>
-                    <method name="declareVariable(string name,type type,bool isReference,bool holdsReturn,bool isParameter,bool isReturn)" returnType="ic/variable"/>
-                    <method name="getMember(storage base,member m)" returnType="ic/member"/>
-                    <method name="getElement(storage base,node index)" returnType="ic/element"/>
-                    <function name="get()" returnType="program"/>
+                    <method name="assemble()" return_type="int16"/>
+                    <method name="run(word result,sequence{string} argv)" return_type="int16"/>
+                    <method name="str()" return_type="string"/>
+                    <method name="getLabel()" return_type="uint32"/>
+                    <method name="getAccId()" return_type="uint32"/>
+                    <method name="getObject(object o)" return_type="ic/object"/>
+                    <method name="getVariable(string name)" return_type="ic/variable"/>
+                    <method name="declareVariable(string name,type type,bool isReference,bool holdsReturn,bool isParameter,bool isReturn)" return_type="ic/variable"/>
+                    <method name="getMember(storage base,member m)" return_type="ic/member"/>
+                    <method name="getElement(storage base,node index)" return_type="ic/element"/>
+                    <function name="get()" return_type="program"/>
                 </corto:scope>
             </class>
 
-            <function name="opKindFromOperator(operatorKind operator)" returnType="opKind"/>
+            <function name="opKindFromOperator(operatorKind operator)" return_type="opKind"/>
 
         </corto:package>
     </corto:package>

@@ -869,15 +869,15 @@ static vm_opKind ic_getVmCall(ic_op op, ic_vmOperand op1, ic_vmOperand op2) {
     } else if (ic_operandIsComposite(ic_function, CORTO_PROCEDURE)) {
         corto_function f = ((ic_object)op->s2)->ptr;
         if (f->kind == CORTO_PROCEDURE_VM) {
-            if ((f->returnType->kind == CORTO_VOID) &&
-                (!f->returnType->reference)) {
+            if ((f->return_type->kind == CORTO_VOID) &&
+                (!f->return_type->reference)) {
                 result = ic_getVmCALLVMVOID(NULL, 0, 0, 0, 0);
             } else {
                 result = ic_getVmCALLVM(NULL, IC_VMTYPE_W, op1, 0, 0);
             }
         } else {
-            if ((f->returnType->kind == CORTO_VOID) &&
-                (!f->returnType->reference)) {
+            if ((f->return_type->kind == CORTO_VOID) &&
+                (!f->return_type->reference)) {
                 result = ic_getVmCALLVOID(NULL, 0, 0, 0, 0);
             } else {
                 result = ic_getVmCALL(NULL, IC_VMTYPE_W, op1, 0, 0);
